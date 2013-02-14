@@ -7,5 +7,5 @@ class Hospital < ActiveRecord::Base
   has_many :hospital_reports
   has_many:health_dept_locations
   has_many:sanctioned_posts
-
+  has_many:postings
 end

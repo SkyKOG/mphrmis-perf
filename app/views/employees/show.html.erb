@@ -305,13 +305,14 @@
     <% @employee.postings.each do |posting| %>
       <tr>
    <!--     <td><%= link_to posting.id, posting_path(posting) %></td>-->
-        <td><%= posting.institution_master.Institution_Name %></td>
+        <td><%= posting.hospital.hospital_name %></td>
         <td><%= posting.designation.Designation_English %></td>
         <td><%= posting.designation.Designation_Hindi %></td>
         <td><%= posting.posting_from %></td>
         <td><%= posting.posting_to %></td>
-<td><span class="WebRupee">  Rs.</span><%= posting.payscale %></td>        
-<td>
+        <td><span class="WebRupee">  Rs.</span><%= posting.payscale %></td>        
+         <td><%= posting.hospital.district.district_name %></td>
+<td>    
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_posting_path(posting), :class => 'btn btn-mini' %>
 
