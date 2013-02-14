@@ -1,6 +1,14 @@
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
 
-<h1>Specialization Demographics</h1>
+
+<h1>Doctors by Specialisation</h1>
 <br><br>
+
+<%= content_tag :div, "", id: "genders_chart", data: {emp_spec_views: @emp_spec_views} %>
+
 
 
 <div class="span5">
@@ -21,3 +29,13 @@
 </tbody>
 </table>
 </div>
+
+<script>
+Morris.Bar({
+          element: 'genders_chart',
+          data: [{"number_of_employees":194,"specialization_name":"Anaesthesiology"},{"number_of_employees":1,"specialization_name":"Biochemistry"},{"number_of_employees":5,"specialization_name":"Community Medicine"},{"number_of_employees":110,"specialization_name":"Dental"},{"number_of_employees":264,"specialization_name":"General Medicine"},{"number_of_employees":229,"specialization_name":"General Surgery"},{"number_of_employees":3,"specialization_name":"Hospital Administration"},{"number_of_employees":2,"specialization_name":"Microbiology"},{"number_of_employees":383,"specialization_name":"Obstetrics & Gynaecology"},{"number_of_employees":207,"specialization_name":"Ophthalmology"},{"number_of_employees":262,"specialization_name":"Orthopaedics"},{"number_of_employees":445,"specialization_name":"Paediatrics"},{"number_of_employees":108,"specialization_name":"Pathology"},{"number_of_employees":4,"specialization_name":"Pharmacology"},{"number_of_employees":5,"specialization_name":"Physiology"},{"number_of_employees":13,"specialization_name":"Psychiatry"},{"number_of_employees":34,"specialization_name":"Public Health"},{"number_of_employees":96,"specialization_name":"Radiology"},{"number_of_employees":33,"specialization_name":"Tuberculosis and Chest Diseases"},{"number_of_employees":169,"specialization_name":"ENT"},{"number_of_employees":8,"specialization_name":"Preventing & Social Medicine"},{"number_of_employees":2,"specialization_name":"Maternity and Child Health"},{"number_of_employees":2401,"specialization_name":"MBBS"},{"number_of_employees":44,"specialization_name":"Other"}],          
+	  xkey: 'specialization_name',
+          ykeys: ['number_of_employees'],
+          labels: ['Number Of Employees']});
+
+</script>

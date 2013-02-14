@@ -40,6 +40,8 @@ gem "twitter-bootstrap-rails"
   # gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  gem 'morrisjs-rails'
+  gem 'raphael-rails'
 end
 
 gem 'jquery-rails'
