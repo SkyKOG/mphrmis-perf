@@ -1,0 +1,23 @@
+<h1>Qualification Demographics</h1>
+<br><br>
+
+<div class="span5">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+	<th>Number of Employees</th>
+	<th>Qualification Name</th>	
+    </tr>
+  </thead>
+<tbody>
+<% @emp_qual_views.each do |emp_qual_view| %>
+  <tr>
+	<td><%= emp_qual_view.number_of_employees %></td>
+	<td><%= emp_qual_view.qualification_name %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+</div>

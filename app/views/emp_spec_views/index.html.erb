@@ -1,0 +1,23 @@
+
+<h1>Specialization Demographics</h1>
+<br><br>
+
+
+<div class="span5">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Specialization</th>
+        <th>Number of Employees</th>
+    </tr>
+  </thead>
+<tbody>
+<% @emp_spec_views.each do |emp_spec_view| %>
+  <tr>
+        <td><%= emp_spec_view.specialization_name %></td>
+        <td><%= emp_spec_view.number_of_employees %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>

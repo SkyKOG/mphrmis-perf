@@ -1,0 +1,22 @@
+<h1>Gender Demographics</h1>
+<br><br>
+
+
+<div class="span5">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th>Gender</th>
+        <th>Number of Employees</th>
+    </tr>
+  </thead>
+<tbody>
+<% @emp_gen_views.each do |emp_gen_view| %>
+  <tr>
+        <td><%= emp_gen_view.gender %></td>
+        <td><%= emp_gen_view.number_of_employees %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
