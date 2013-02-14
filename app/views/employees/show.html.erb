@@ -7,6 +7,7 @@
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#lA" data-toggle="tab">Primary Details</a></li>
                 <li><a href="#lX" data-toggle="tab">Address Details</a></li>
+		<li><a href="#lW" data-toggle="tab">Work Details</a></li>
                 <li><a href="#lC" data-toggle="tab">Postings History</a></li>
                 <li><a href="#lB" data-toggle="tab">Qualifications</a></li>
                 <li><a href="#lD" data-toggle="tab">Dependents</a></li>                
@@ -447,8 +448,64 @@
 
 
 
+<div class="tab-pane" id="lW">
+
+<div class="span8">
+<%- model_class = EmployeeWorkDetail -%>
+<table class="table table-striped table-condensed" id="address">
+
+<% @employee.employee_work_details.each do |employee_work_detail|%><tbody>
+    <tr>
+        <td>Employee Class</td>
+        <td><%= best_in_place employee_work_detail, :employee_class %></td>
+    </tr>
+<tr>
+        <td>Join Date</td>
+        <td><%= best_in_place employee_work_detail, :join_date, :type => :date %></td>
+    </tr>
+<tr>
+        <td>Public Service Commission No.</td>
+        <td><%= best_in_place employee_work_detail, :pub_svc_comm_no %></td>
+    </tr>
+<tr>
+        <td>Public Service Commission Year.</td>
+        <td><%= best_in_place employee_work_detail, :pub_svc_comm_year %></td>
+    </tr>
+<tr>
+        <td>Medical Registration Number</td>
+        <td><%= best_in_place employee_work_detail, :medical_registration_number %></td>
+    </tr>
+
+<tr>
+        <td>Medical Registration Date</td>
+        <td><%= best_in_place employee_work_detail, :medical_registration_date %></td>
+    </tr>
+
+<tr>
+        <td>Superannuation Date</td>
+        <td><%= best_in_place employee_work_detail, :superannuation_date %></td>
+    </tr>
+<tr>
+<td>Status</td>
+<td><%= best_in_place employee_work_detail, :status_id, :type => :select , :collection => Status.all.map{ |e| [e.id, e.Status_name] } %></td>
+</tr>
+
+	<tr>
+<td>Designation</td>
+<td><%= best_in_place employee_work_detail, :designation_id, :type => :select , :collection => Designation.all.map{ |e| [e.id, e.Designation_English] } %></td>
+</tr>
+
+<tr>
+<td>Recruitment Mode</td>
+<td><%= best_in_place employee_work_detail, :recruitment_mode_id, :type => :select , :collection => RecruitmentMode.all.map{ |e| [e.id, e.recruitment_mode] } %></td>
+</tr>
 
 
+<% end %>
+  </tbody>
+</table>
+</div>
+</div>
 
 
 

@@ -8,3 +8,4 @@ jQuery ->
 jQuery ->
   $("#employee_emp_dob").datepicker
   	dateFormat: 'yy-mm-dd'
+
