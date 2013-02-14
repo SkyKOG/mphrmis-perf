@@ -13,7 +13,7 @@
   <dt><strong><%= model_class.human_attribute_name(:Birthdate) %>:</strong></dt>
   <dd><%= @dependent.Birthdate %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status_id) %>:</strong></dt>
-  <dd><%= @dependent.status.Status_name %></dd>
+  <dd><%= @dependent.relationship.rel_name %></dd>
 </dl>
 
 <div class="form-actions">

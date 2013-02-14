@@ -15,7 +15,7 @@
     <% @blocks.each do |block| %>
       <tr>
         <td><%= link_to block.id, block_path(block) %></td>
-        <td><%= block.district_id %></td>
+        <td><%= block.district.district_name %></td>
         <td><%= block.block_name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
