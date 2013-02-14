@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213191610) do
+ActiveRecord::Schema.define(:version => 20130214130955) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -210,60 +210,60 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
   end
 
   create_table "TblLocation1", :primary_key => "idno", :force => true do |t|
-    t.text "Division"
-    t.text "LocationDistrict"
-    t.text "LocationCode"
-    t.text "LocationID"
-    t.text "Beds"
-    t.text "LocationName"
-    t.text "Dept"
-    t.text "LocationAddress1"
-    t.text "LocationAddress2"
-    t.text "LocationCity"
-    t.text "LocationState"
-    t.text "LocationPhoneNo"
-    t.text "LocationFaxNo"
-    t.text "LocationEmail"
-    t.text "Flag1"
-    t.text "Flag2"
-    t.text "Flag3"
-    t.text "Flag4"
-    t.text "Flag5"
-    t.text "LocationDistictID"
-    t.text "InstitutionCategory"
-    t.text "InstitutionType"
-    t.text "ExtraFlag1"
-    t.text "ExtraFlag2"
-    t.text "ExtraFlag3"
-    t.text "ExtraFlag4"
-    t.text "ExtraFlag5"
-    t.text "Medical"
-    t.text "Surgery"
-    t.text "Gynaec"
-    t.text "Paedriatrics"
-    t.text "Anaesth"
-    t.text "Optho"
-    t.text "Orthro"
-    t.text "ENT"
-    t.text "Radio"
-    t.text "Patho"
-    t.text "Psychiatry"
-    t.text "TB"
-    t.text "Skin"
-    t.text "Neuro"
-    t.text "Gastero"
-    t.text "DentalSpec"
-    t.text "OthersSpec"
-    t.text "MO"
-    t.text "Dental"
-    t.text "Others"
-    t.text "Ayush"
-    t.text "MedFilled"
-    t.text "SurgFilled"
-    t.text "GynFilled"
-    t.text "TotalSpec"
-    t.text "BlockName"
-    t.text "IsTribal"
+    t.text   "Division"
+    t.text   "LocationDistrict"
+    t.text   "LocationCode"
+    t.text   "LocationID"
+    t.text   "Beds"
+    t.text   "LocationName"
+    t.text   "Dept"
+    t.text   "LocationAddress1"
+    t.text   "LocationAddress2"
+    t.text   "LocationCity"
+    t.text   "LocationState"
+    t.text   "LocationPhoneNo"
+    t.text   "LocationFaxNo"
+    t.text   "LocationEmail"
+    t.text   "Flag1"
+    t.text   "Flag2"
+    t.text   "Flag3"
+    t.string "Flag4",               :limit => 150
+    t.text   "Flag5"
+    t.text   "LocationDistictID"
+    t.text   "InstitutionCategory"
+    t.text   "InstitutionType"
+    t.text   "ExtraFlag1"
+    t.text   "ExtraFlag2"
+    t.text   "ExtraFlag3"
+    t.text   "ExtraFlag4"
+    t.text   "ExtraFlag5"
+    t.text   "Medical"
+    t.text   "Surgery"
+    t.text   "Gynaec"
+    t.text   "Paedriatrics"
+    t.text   "Anaesth"
+    t.text   "Optho"
+    t.text   "Orthro"
+    t.text   "ENT"
+    t.text   "Radio"
+    t.text   "Patho"
+    t.text   "Psychiatry"
+    t.text   "TB"
+    t.text   "Skin"
+    t.text   "Neuro"
+    t.text   "Gastero"
+    t.text   "DentalSpec"
+    t.text   "OthersSpec"
+    t.text   "MO"
+    t.text   "Dental"
+    t.text   "Others"
+    t.text   "Ayush"
+    t.text   "MedFilled"
+    t.text   "SurgFilled"
+    t.text   "GynFilled"
+    t.text   "TotalSpec"
+    t.text   "BlockName"
+    t.text   "IsTribal"
   end
 
   create_table "achievements", :force => true do |t|
@@ -276,7 +276,6 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
   end
 
   create_table "additional_charges", :force => true do |t|
-    t.integer  "add_chargeID"
     t.integer  "employee_id"
     t.integer  "location_id"
     t.integer  "designation_id"
@@ -284,6 +283,7 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
     t.date     "to_date"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.text     "remarks"
   end
 
   create_table "addresses", :force => true do |t|
@@ -433,6 +433,18 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "employee_work_details", :primary_key => "employee_id", :force => true do |t|
+    t.integer "status_id"
+    t.integer "designation_id"
+    t.date    "join_date"
+    t.string  "pub_svc_comm_no",             :limit => 15
+    t.integer "pub_svc_comm_year"
+    t.integer "recruitment_mode_id"
+    t.string  "medical_registration_number", :limit => 25
+    t.date    "medical_registration_date"
+    t.date    "superannuation_date"
+  end
+
   create_table "employees", :force => true do |t|
     t.string   "emp_id"
     t.string   "emp_full_name"
@@ -445,9 +457,10 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
     t.integer  "category_id"
     t.integer  "religion_id"
     t.integer  "caste_id"
+    t.integer  "marital_status_id"
     t.integer  "blood_group_id"
     t.string   "emp_permanent_address"
-    t.string   "emp_loc_master_id"
+    t.integer  "emp_loc_master_id"
     t.string   "emp_phone_no"
     t.string   "emp_mobile_no"
     t.string   "emp_email"
@@ -619,8 +632,8 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
     t.integer  "block_id"
   end
 
-  create_table "martial_stats", :force => true do |t|
-    t.string   "martial_status_type"
+  create_table "marital_status", :force => true do |t|
+    t.string   "marital_status_type"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
@@ -686,6 +699,12 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
     t.string   "employee_no"
   end
 
+  create_table "recruitment_mode", :force => true do |t|
+    t.string  "recruitment_mode", :null => false
+    t.date    "created_datetime", :null => false
+    t.integer "created_userid",   :null => false
+  end
+
   create_table "relations", :force => true do |t|
     t.string   "Relation_name"
     t.datetime "created_at",    :null => false
@@ -716,11 +735,10 @@ ActiveRecord::Schema.define(:version => 20130213191610) do
   end
 
   create_table "sanctioned_posts", :force => true do |t|
-    t.integer  "health_dept_locationID"
-    t.integer  "designationID"
-    t.integer  "sac_post"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.integer  "hospital_id"
+    t.integer  "sanctioned_posts"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "designation_id"
   end
 

@@ -1,5 +1,6 @@
 class SanctionedPost < ActiveRecord::Base
-  attr_accessible :designationID, :health_dept_locationID, :sac_post, :designation_id
+  attr_accessible :hospital_id, :sanctioned_posts, :designation_id
   belongs_to:designation
+  belongs_to:hospital
   
 end

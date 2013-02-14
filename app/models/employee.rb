@@ -9,7 +9,7 @@ class Employee < ActiveRecord::Base
   has_many:showcauses
   has_many:promotions
   has_many:employment_types
-  has_many:additional_charge
+  has_many:additional_charges
   has_many:addresses
   
   belongs_to:gender

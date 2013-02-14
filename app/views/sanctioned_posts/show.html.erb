@@ -5,11 +5,11 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:health_dept_locationID) %>:</strong></dt>
-  <dd><%= @sanctioned_post.health_dept_locationID %></dd>
+  <dd><%= @sanctioned_post.hospital.hospital_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:designation_name) %>:</strong></dt>
   <dd><%= @sanctioned_post.designation.Designation_English %></dd>
   <dt><strong><%= model_class.human_attribute_name(:Sanctoned_Posts) %>:</strong></dt>
-  <dd><%= @sanctioned_post.sac_post %></dd>
+  <dd><%= @sanctioned_post.sanctioned_posts %></dd>
 </dl>
 
 <div class="form-actions">
