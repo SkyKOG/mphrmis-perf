@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214164941) do
+ActiveRecord::Schema.define(:version => 20130214192424) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -433,15 +433,24 @@ ActiveRecord::Schema.define(:version => 20130214164941) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "emp_status", :force => true do |t|
-    t.string   "Status_name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "empl_age", :id => false, :force => true do |t|
     t.string  "employee_name"
     t.decimal "employee_age",  :precision => 10, :scale => 4
+  end
+
+  create_table "empl_tenure", :id => false, :force => true do |t|
+    t.integer "employee_id",                                   :null => false
+    t.decimal "employee_tenure", :precision => 7, :scale => 0
+  end
+
+  create_table "employee_age_by_band", :id => false, :force => true do |t|
+    t.integer "number_of_employees", :limit => 8, :default => 0, :null => false
+    t.string  "ageband",             :limit => 8
+  end
+
+  create_table "employee_tenure_by_band", :id => false, :force => true do |t|
+    t.integer "COUNT(*)", :limit => 8,  :default => 0, :null => false
+    t.string  "tenure",   :limit => 11
   end
 
   create_table "employee_work_details", :force => true do |t|
@@ -722,7 +731,7 @@ ActiveRecord::Schema.define(:version => 20130214164941) do
     t.string   "employee_no"
   end
 
-  create_table "recruitment_mode", :force => true do |t|
+  create_table "recruitment_modes", :force => true do |t|
     t.string  "recruitment_mode", :null => false
     t.date    "created_datetime", :null => false
     t.integer "created_userid",   :null => false
@@ -761,6 +770,11 @@ ActiveRecord::Schema.define(:version => 20130214164941) do
     t.string  "designation_english"
     t.string  "designation_hindi"
     t.decimal "total_sanctioned",    :precision => 32, :scale => 0
+  end
+
+  create_table "sanctioned_by_designations", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sanctioned_posts", :force => true do |t|
@@ -804,6 +818,12 @@ ActiveRecord::Schema.define(:version => 20130214164941) do
     t.string   "state_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "Status_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "taluks", :force => true do |t|

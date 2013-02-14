@@ -1,4 +1,7 @@
 Beauty::Application.routes.draw do
+  resources :sanctioned_by_designations
+
+
   resources :recruitment_modes
 
 
