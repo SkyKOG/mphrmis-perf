@@ -7,11 +7,9 @@
 <h1>Doctors by Specialisation</h1>
 <br><br>
 
-<%= content_tag :div, "", id: "genders_chart", data: {emp_spec_views: @emp_spec_views} %>
 
-
-
-<div class="span5">
+<div class="row">
+<div class="span4">
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -29,7 +27,10 @@
 </tbody>
 </table>
 </div>
-
+	<div class="span8">
+		<%= content_tag :div, "", id: "genders_chart", data: {emp_spec_views: @emp_spec_views} %>
+	</div>
+</div>
 <script>
 Morris.Bar({
           element: 'genders_chart',
