@@ -5,4 +5,5 @@ class Status < ActiveRecord::Base
   validates_presence_of(:Status_name)
 
   has_many:dependents
+  has_many:employee_work_details
 end

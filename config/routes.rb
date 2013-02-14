@@ -1,4 +1,7 @@
 Beauty::Application.routes.draw do
+  resources :recruitment_modes
+
+
   resources :employee_work_details
 
 

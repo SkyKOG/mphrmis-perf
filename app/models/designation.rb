@@ -4,4 +4,5 @@ class Designation < ActiveRecord::Base
   has_many:promotions
   has_many:sanctioned_posts
   has_many:additional_charges
+  has_many:employee_work_details
 end

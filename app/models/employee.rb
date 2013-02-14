@@ -11,6 +11,7 @@ class Employee < ActiveRecord::Base
   has_many:employment_types
   has_many:additional_charges
   has_many:addresses
+  has_many:employee_work_details
   
   belongs_to:gender
   belongs_to:category

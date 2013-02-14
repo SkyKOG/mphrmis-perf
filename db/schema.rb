@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214151134) do
+ActiveRecord::Schema.define(:version => 20130214164941) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -437,6 +437,11 @@ ActiveRecord::Schema.define(:version => 20130214151134) do
     t.string   "Status_name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "empl_age", :id => false, :force => true do |t|
+    t.string  "employee_name"
+    t.decimal "employee_age",  :precision => 10, :scale => 4
   end
 
   create_table "employee_work_details", :force => true do |t|
