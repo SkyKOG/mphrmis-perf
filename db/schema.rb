@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214130955) do
+ActiveRecord::Schema.define(:version => 20130214151134) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -433,9 +433,17 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "employee_work_details", :primary_key => "employee_id", :force => true do |t|
+  create_table "emp_status", :force => true do |t|
+    t.string   "Status_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "employee_work_details", :force => true do |t|
+    t.integer "employee_id",                               :null => false
     t.integer "status_id"
     t.integer "designation_id"
+    t.integer "employee_class"
     t.date    "join_date"
     t.string  "pub_svc_comm_no",             :limit => 15
     t.integer "pub_svc_comm_year"
@@ -444,6 +452,8 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.date    "medical_registration_date"
     t.date    "superannuation_date"
   end
+
+  add_index "employee_work_details", ["employee_id"], :name => "employee_id"
 
   create_table "employees", :force => true do |t|
     t.string   "emp_id"
@@ -569,6 +579,13 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "hospital_type", :force => true do |t|
+    t.string "hospital_type",    :null => false
+    t.string "remarks"
+    t.date   "created_datetime", :null => false
+    t.date   "updated_datetime", :null => false
+  end
+
   create_table "hospitals", :force => true do |t|
     t.integer  "location_id"
     t.integer  "beds"
@@ -578,6 +595,7 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.integer  "division_id"
     t.integer  "district_id"
     t.integer  "block_id"
+    t.integer  "hospital_type_id",         :null => false
     t.integer  "institution_type_id"
     t.boolean  "IsAdministrativeLocation"
     t.boolean  "IsTribal"
@@ -646,13 +664,13 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
 
   create_table "postings", :force => true do |t|
     t.integer  "employee_id"
-    t.integer  "institution_master_id"
+    t.integer  "hospital_id"
     t.integer  "designation_id"
     t.date     "posting_from"
     t.date     "posting_to"
     t.string   "payscale"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "district_id"
   end
 
@@ -734,6 +752,12 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "sanctioned_by_designation", :id => false, :force => true do |t|
+    t.string  "designation_english"
+    t.string  "designation_hindi"
+    t.decimal "total_sanctioned",    :precision => 32, :scale => 0
+  end
+
   create_table "sanctioned_posts", :force => true do |t|
     t.integer  "hospital_id"
     t.integer  "sanctioned_posts"
@@ -753,6 +777,11 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.datetime "updated_at",         :null => false
   end
 
+  create_table "soutemp", :id => false, :force => true do |t|
+    t.integer "emp_id", :null => false
+    t.date    "dob",    :null => false
+  end
+
   create_table "special_cadres", :force => true do |t|
     t.string   "Special_Cadre_Type"
     t.datetime "created_at",         :null => false
@@ -770,12 +799,6 @@ ActiveRecord::Schema.define(:version => 20130214130955) do
     t.string   "state_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "statuses", :force => true do |t|
-    t.string   "Status_name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "taluks", :force => true do |t|

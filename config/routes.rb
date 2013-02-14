@@ -1,4 +1,7 @@
 Beauty::Application.routes.draw do
+  resources :employee_work_details
+
+
   resources :reports
 
 
