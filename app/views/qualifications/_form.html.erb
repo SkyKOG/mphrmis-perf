@@ -5,7 +5,7 @@
   <%= f.association :qualification_type,label_method: :Qualification_type, value_method: :id, include_blank: false %>
   <%= f.association :qualification_name,label_method: :Qualification_name, value_method: :id, include_blank: false %>
   <%= f.association :specialisation,label_method: :Specialisation_name, value_method: :id, include_blank: false %>
-  <%= f.input :year %>
+  <%= f.input :year, collection: 1960..2050, prompt: "Select Year",include_blank: true %>
   <%= f.association :university,label_method: :University_name, value_method: :id, include_blank: false %>
   <%= f.input :Remarks %>
   <div class="form-actions">

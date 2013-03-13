@@ -6,7 +6,7 @@ class District < ActiveRecord::Base
   has_many:health_dept_locations
   has_many:blocks  
   belongs_to:division
-  has_many:divisions
-  validates_uniqueness_of(:district_name)
-  validates_presence_of(:district_name)
+  has_many:sanctioned_post
+
+  validates_associated :blocks, :division
 end

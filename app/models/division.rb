@@ -4,5 +4,9 @@ class Division < ActiveRecord::Base
   has_many:health_dept_locations
   belongs_to:state
   has_many:districts
-  belongs_to:district 
+  has_many:hospitals
+
+  has_many:sanctioned_posts
+
+  validates_associated :districts
 end

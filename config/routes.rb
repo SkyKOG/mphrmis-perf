@@ -1,4 +1,25 @@
 Beauty::Application.routes.draw do
+  resources :posting_types
+
+
+  resources :vw_sanctioned_working_by_hospitals
+
+
+  resources :employee_cadres
+
+
+  resources :graph_hospital_vacant_by_bands
+
+
+  resources :employee_age_by_bands
+
+
+  resources :emp_tenure_by_bands
+
+
+  resources :hospital_types
+
+
   resources :sanctioned_by_designations
 
 

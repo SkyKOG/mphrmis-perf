@@ -8,4 +8,9 @@ jQuery ->
 
 jQuery ->
   $("#posting_posting_to").datepicker
-  	 dateFormat: 'D, dd M yy' 
+  	 dateFormat: 'dd-mm-yy' 
+
+jQuery ->
+  $("#posting_posting_order_date").datepicker
+         dateFormat: 'dd-mm-yy'
+

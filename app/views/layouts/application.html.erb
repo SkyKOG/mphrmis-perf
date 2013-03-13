@@ -43,8 +43,8 @@
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                      <li><%= link_to "View Employees", employees_path %></li>
                           <li><a href="/employees/new" data-method="get">Add Employee</a></li>
-                    <!-- <li class="divider"></li>
-                    <li><a tabindex="-1" href="#">Separated link</a></li> -->
+                    <li class="divider"></li>
+                   <!--  <li><a tabindex="-1" href="#">Separated link</a></li> -->
                   </ul>
               </li>
 
@@ -58,6 +58,11 @@
                           <li><%= link_to "Doctors by Specialisation", emp_spec_views_path %></li>
                           <li><%= link_to "Doctors by Qualification", emp_qual_views_path %></li>
                           <li><%= link_to "Doctors by Gender", emp_gen_views_path %></li>
+			  <li class="divider"></li>
+			  <li><%= link_to "Sanctioned By Designations", sanctioned_by_designations_path %></li>
+			  <li class="divider"></li>
+		          <li><%= link_to "Employees by Age Band", employee_age_by_bands_path %></li>
+			  <li><%= link_to "Employees by Tenure Band", emp_tenure_by_bands_path %></li>
                         </ul>
                       </li>
                   <!--        <li><%= link_to "Report Name1", employees_path %></li>
@@ -72,8 +77,49 @@
 <li class="dropdown">
                 <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Employees <b class="caret"></b></a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                        <li><%= link_to "View Employees", employees_path %></li>
-                          <li><a href="/employees/new" data-method="get">Add Employee</a></li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Doctors</a>
+                        <ul class="dropdown-menu">
+                           <li><%= link_to "View Doctors", employees_path %></li>
+                           <li><a href="/employees/new" data-method="get">Add Doctor</a></li>
+                        </ul>
+                    </li>
+                 <!--   <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Nurses</a>
+                        <ul class="dropdown-menu">
+                           <li><%= link_to "View Employees", employees_path %></li>
+                           <li><a href="/employees/new" data-method="get">Add Employee</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Para Medical Staff</a>
+                        <ul class="dropdown-menu">
+                           <li><%= link_to "View Employees", employees_path %></li>
+                           <li><a href="/employees/new" data-method="get">Add Employee</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Clerical Staff</a>
+                        <ul class="dropdown-menu">
+                           <li><%= link_to "View Employees", employees_path %></li>
+                           <li><a href="/employees/new" data-method="get">Add Employee</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">Non-Clerical Staff</a>
+                        <ul class="dropdown-menu">
+                           <li><%= link_to "View Employees", employees_path %></li>
+                           <li><a href="/employees/new" data-method="get">Add Employee</a></li>
+                        </ul>
+                    </li>    --> 
+			<li class="divider"></li>
+			<li><%= link_to "Employee Cadre", employee_cadres_path %></li>
+			<li><%= link_to "Admin Office", employees_path %></li>
+			<li class="divider"></li>
+			<li><%= link_to "Blood Groups", blood_groups_path %></li>
+			<li><%= link_to "Marital Status", martial_stats_path %></li>
+			<li><%= link_to "Religions", religions_path %></li>
+			<li><%= link_to "Castes", castes_path %></li>
                     <!-- <li class="divider"></li>
                     <li><a tabindex="-1" href="#">Separated link</a></li> -->
                   </ul>
@@ -82,19 +128,12 @@
 
 
               <li class="dropdown">
-                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Masters <b class="caret"></b></a>
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hierarchies <b class="caret"></b></a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                     <li><%= link_to "States", states_path %></li>
                     <li><%= link_to "Divisions", divisions_path %></li>
                     <li><%= link_to "Districts", districts_path %></li>
                     <li><%= link_to "Blocks", blocks_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Hospitals", hospitals_path %></li>
-                   <!--  <li><%= link_to "Hospitals", hospitals_path %></li> 
-                    <li><%= link_to "Institutions", institution_masters_path %></li> -->
-                    <li class="divider"></li>
-                   <li><%= link_to "Sanctioned Posts", sanctioned_posts_path %></li>
-                   <li><%= link_to "Additional Charges", additional_charges_path %></li>
 
 
 
@@ -144,6 +183,21 @@
                     <li><a tabindex="-1" href="#">Separated link</a></li> -->
                   </ul>
               </li>
+
+
+
+
+	       <li class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hospitals <b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                   	<li><%= link_to "Hospital List", hospitals_path %></li>
+	                <li><%= link_to "Sanctioned Posts", sanctioned_posts_path %></li>
+                        <li><%= link_to "Additional Charges", additional_charges_path %></li>
+		   </ul>
+		  </li>
+
+
+
             <!-- <li><%= link_to "Venkat Sir" %></li>    -->         
             </ul>
           </div><!--/.nav-collapse -->

@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style type="text/css" media="screen">
+  body{
+    background-image:url('/assets/madhya46.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position: 50% 83%; 
+  } 
+        .form-actions{
+        background: none;
+      }
+  </style>
+
+  </head>
 <h2>Sign in</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -13,3 +29,6 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<body>
+</body>

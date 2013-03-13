@@ -1,5 +1,23 @@
 <%= simple_form_for @sanctioned_post, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false %>
+
+  <%= f.input :division do %>
+  <%= f.collection_select :division, Division.order(:division_name), :id, :division_name, include_blank: false %><br> 
+   <% end %>
+
+  <%= f.input :district do %>
+  <%= f.grouped_collection_select :district, Division.order(:division_name), :districts, :division_name, :id, :district_name, include_blank: true %><br>
+  <% end %>
+
+  <%= f.input :block do %>
+  <%= f.grouped_collection_select :block, District.order(:district_name), :blocks, :district_name, :id, :block_name, include_blank: true %><br>
+  <% end %>
+
+  <%= f.input :hospital_id do %>
+      <%= f.grouped_collection_select :hospital_id, Block.order(:block_name), :hospitals, :block_name, :id, :hospital_name, include_blank: true, label: 'Hospital' %>
+  <% end %>
+
+  
+  
   <%= f.association :designation,label_method: :Designation_English, value_method: :id, include_blank: false %>
   <%= f.input :sanctioned_posts %>
   <div class="form-actions">
@@ -8,3 +26,4 @@
                 sanctioned_posts_path, :class => 'btn' %>
   </div>
 <% end %>
+

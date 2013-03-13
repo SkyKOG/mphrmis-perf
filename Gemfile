@@ -22,6 +22,7 @@ gem 'binding_of_caller'
 gem 'inherited_resources'
 #gem 'bootstrap-editable-rails'
 
+gem 'pdfkit'
 gem 'devise'
 gem 'haml'
 gem 'best_in_place'

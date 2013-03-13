@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214192424) do
+ActiveRecord::Schema.define(:version => 20130308084023) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -354,6 +354,11 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.integer  "relationship_id"
   end
 
+  create_table "designation_specialisations", :force => true do |t|
+    t.integer "designation_id",    :null => false
+    t.integer "specialisation_id", :null => false
+  end
+
   create_table "designations", :force => true do |t|
     t.string   "Designation_Hindi"
     t.string   "Designation_English"
@@ -376,6 +381,11 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "state_id"
+  end
+
+  create_table "emp1_tenure_by_band", :id => false, :force => true do |t|
+    t.integer "number_of_employees", :limit => 8,  :default => 0, :null => false
+    t.string  "tenure",              :limit => 11
   end
 
   create_table "emp_adds", :force => true do |t|
@@ -433,6 +443,16 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "emp_tenure_by_band", :id => false, :force => true do |t|
+    t.integer "number_of_employees", :limit => 8,  :default => 0, :null => false
+    t.string  "tenure",              :limit => 11
+  end
+
+  create_table "emp_tenure_by_bands", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "empl_age", :id => false, :force => true do |t|
     t.string  "employee_name"
     t.decimal "employee_age",  :precision => 10, :scale => 4
@@ -446,6 +466,35 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
   create_table "employee_age_by_band", :id => false, :force => true do |t|
     t.integer "number_of_employees", :limit => 8, :default => 0, :null => false
     t.string  "ageband",             :limit => 8
+  end
+
+  create_table "employee_age_by_bands", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "employee_cadres", :force => true do |t|
+    t.string   "employee_cadre_type"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "employee_sanction_working", :id => false, :force => true do |t|
+    t.integer "employee_id"
+    t.string  "emp_full_name"
+    t.string  "gender_name"
+    t.date    "join_date"
+    t.integer "employee_class"
+    t.string  "qualification_name"
+    t.integer "specialisation_id"
+    t.integer "designation_id"
+    t.string  "specialisation_name"
+    t.string  "employment_type"
+    t.string  "status_name"
+    t.string  "district_name"
+    t.integer "hospital_id"
+    t.string  "hospital_name"
+    t.integer "sanctioned_posts"
   end
 
   create_table "employee_tenure_by_band", :id => false, :force => true do |t|
@@ -491,7 +540,29 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
     t.string   "emp_treasury_id"
-    t.string   "employment_type"
+    t.integer  "employment_type_id"
+    t.integer  "employee_cadre_id"
+    t.integer  "ddo_num"
+    t.integer  "ddo_code"
+  end
+
+  add_index "employees", ["emp_loc_master_id"], :name => "emp_loc_master_id"
+
+  create_table "employees_details", :id => false, :force => true do |t|
+    t.integer "employee_id"
+    t.string  "emp_full_name"
+    t.string  "gender_name"
+    t.date    "join_date"
+    t.integer "employee_class"
+    t.string  "qualification_name"
+    t.integer "specialisation_id",   :default => 0, :null => false
+    t.integer "designation_id",                     :null => false
+    t.string  "specialisation_name"
+    t.string  "employment_type"
+    t.string  "status_name"
+    t.string  "district_name"
+    t.integer "hospital_id",         :default => 0, :null => false
+    t.string  "hospital_name"
   end
 
   create_table "employment_types", :force => true do |t|
@@ -504,6 +575,25 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.string   "gender_name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "graph_employee_status_by_band", :id => false, :force => true do |t|
+    t.integer "specialisation_id",                                              :default => 0, :null => false
+    t.string  "specialisation"
+    t.decimal "nos",                             :precision => 32, :scale => 0
+    t.string  "statusband",        :limit => 14
+  end
+
+  create_table "graph_hospital_vacant_by_band", :id => false, :force => true do |t|
+    t.integer "specialisation_id",                             :null => false
+    t.string  "specialisation"
+    t.integer "nos",               :limit => 8, :default => 0, :null => false
+    t.string  "hospitalband",                                  :null => false
+  end
+
+  create_table "graph_hospital_vacant_by_bands", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "health_dept_locations", :force => true do |t|
@@ -593,7 +683,7 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.datetime "updated_at",     :null => false
   end
 
-  create_table "hospital_type", :force => true do |t|
+  create_table "hospital_types", :force => true do |t|
     t.string "hospital_type",    :null => false
     t.string "remarks"
     t.date   "created_datetime", :null => false
@@ -615,6 +705,8 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.boolean  "IsTribal"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "institution_masters", :force => true do |t|
@@ -664,8 +756,8 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.integer  "block_id"
   end
 
-  create_table "marital_status", :force => true do |t|
-    t.string   "marital_status_type"
+  create_table "martial_stats", :force => true do |t|
+    t.string   "martial_status_type"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
@@ -676,6 +768,12 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "posting_types", :force => true do |t|
+    t.string   "posting_type_name"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "postings", :force => true do |t|
     t.integer  "employee_id"
     t.integer  "hospital_id"
@@ -683,10 +781,20 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.date     "posting_from"
     t.date     "posting_to"
     t.string   "payscale"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "district_id"
+    t.string   "posting_order_number"
+    t.date     "posting_order_date"
+    t.string   "posting_order_authority"
+    t.boolean  "current_location"
+    t.integer  "posting_type_id"
   end
+
+  add_index "postings", ["designation_id"], :name => "index_postings_on_designation_id"
+  add_index "postings", ["district_id"], :name => "index_postings_on_district_id"
+  add_index "postings", ["employee_id"], :name => "index_postings_on_employee_id"
+  add_index "postings", ["hospital_id"], :name => "index_postings_on_hospital_id"
 
   create_table "posts", :force => true do |t|
     t.string   "name"
@@ -731,6 +839,12 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.string   "employee_no"
   end
 
+  add_index "qualifications", ["employee_id", "qualification_name_id"], :name => "emp_qual_name_id"
+  add_index "qualifications", ["employee_id"], :name => "index_qualifications_on_employee_id"
+  add_index "qualifications", ["qualification_name_id"], :name => "index_qualifications_on_qualification_name_id"
+  add_index "qualifications", ["qualification_type_id"], :name => "index_qualifications_on_qualification_type_id"
+  add_index "qualifications", ["specialisation_id"], :name => "index_qualifications_on_specialisation_id"
+
   create_table "recruitment_modes", :force => true do |t|
     t.string  "recruitment_mode", :null => false
     t.date    "created_datetime", :null => false
@@ -753,6 +867,16 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.string   "religion_name"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "report_vacant_hopistals", :id => false, :force => true do |t|
+    t.integer "hospital_id"
+    t.string  "hospital_type",       :null => false
+    t.string  "hospital_name"
+    t.integer "sanctioned_posts"
+    t.integer "designation_id"
+    t.integer "specialisation_id",   :null => false
+    t.string  "Specialisation_name"
   end
 
   create_table "reports", :force => true do |t|
@@ -785,6 +909,9 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.integer  "designation_id"
   end
 
+  add_index "sanctioned_posts", ["designation_id"], :name => "index_sanctioned_posts_on_designation_id"
+  add_index "sanctioned_posts", ["hospital_id"], :name => "index_sanctioned_posts_on_hospital_id"
+
   create_table "showcauses", :force => true do |t|
     t.integer  "employee_id"
     t.integer  "case_no"
@@ -798,7 +925,7 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
 
   create_table "soutemp", :id => false, :force => true do |t|
     t.integer "emp_id", :null => false
-    t.date    "dob",    :null => false
+    t.string  "name",   :null => false
   end
 
   create_table "special_cadres", :force => true do |t|
@@ -895,6 +1022,35 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "treasury_designations", :force => true do |t|
+    t.string   "Designation_Hindi"
+    t.string   "Designation_English"
+    t.integer  "class_no"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "designataionID"
+    t.boolean  "gazetted_officer"
+  end
+
+  create_table "treasury_hr_info", :id => false, :force => true do |t|
+    t.integer "ID"
+    t.integer "EMP_CODE"
+    t.string  "EMP_FIRST_NAME",      :limit => 78
+    t.string  "EMP_MIDDLE_NAME",     :limit => 46
+    t.string  "EMP_LAST_NAME",       :limit => 40
+    t.string  "SEX",                 :limit => 1
+    t.string  "FATHER_HUSBAND_NAME", :limit => 91
+    t.string  "CAT",                 :limit => 43
+    t.string  "ADDRESS",             :limit => 153
+    t.integer "DDO_CODE"
+    t.string  "OFFICE_NAME",         :limit => 117
+    t.string  "DESIGNATION",         :limit => 123
+    t.string  "DOB",                 :limit => 10
+    t.string  "DOJ",                 :limit => 10
+    t.string  "PAYSCAL",             :limit => 22
+    t.integer "BASIC"
+  end
+
   create_table "universities", :force => true do |t|
     t.string   "University_name"
     t.datetime "created_at",      :null => false
@@ -921,5 +1077,51 @@ ActiveRecord::Schema.define(:version => 20130214192424) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "vw_class_II_sanctioned", :id => false, :force => true do |t|
+    t.integer "hospital_id"
+    t.decimal "class_II_sanctioned", :precision => 32, :scale => 0
+  end
+
+  create_table "vw_class_II_working", :id => false, :force => true do |t|
+    t.integer "hospital_id",                   :default => 0, :null => false
+    t.integer "class_II_working", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_class_I_sanctioned", :id => false, :force => true do |t|
+    t.integer "hospital_id"
+    t.decimal "class_I_sanctioned", :precision => 32, :scale => 0
+  end
+
+  create_table "vw_class_I_working", :id => false, :force => true do |t|
+    t.integer "hospital_id",                  :default => 0, :null => false
+    t.integer "class_I_working", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_current_locations", :id => false, :force => true do |t|
+    t.integer "employee_id"
+    t.integer "hospital_id"
+    t.integer "designation_id"
+    t.date    "posting_from"
+    t.date    "posting_to"
+    t.string  "payscale"
+    t.integer "posting_type_id"
+  end
+
+  create_table "vw_sanctioned_working_by_hospital", :id => false, :force => true do |t|
+    t.integer "hospital_id",                                                    :default => 0, :null => false
+    t.string  "hospital_name"
+    t.decimal "class_1_sanctioned",              :precision => 32, :scale => 0, :default => 0, :null => false
+    t.integer "class_1_working",    :limit => 8,                                :default => 0, :null => false
+    t.decimal "class_1_vacant",                  :precision => 33, :scale => 0, :default => 0, :null => false
+    t.decimal "class_2_sanctioned",              :precision => 32, :scale => 0, :default => 0, :null => false
+    t.integer "class_2_working",    :limit => 8,                                :default => 0, :null => false
+    t.decimal "class_2_vacant",                  :precision => 33, :scale => 0, :default => 0, :null => false
+  end
+
+  create_table "vw_sanctioned_working_by_hospitals", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

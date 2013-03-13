@@ -18,6 +18,17 @@
   <dd><%= @posting.posting_to %></dd>
   <dt><strong><%= model_class.human_attribute_name(:payscale) %>:</strong></dt>
   <dd><%= @posting.payscale %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:posting_order_date) %>:</strong></dt>
+  <dd><%= @posting.posting_order_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:posting_order_authority) %>:</strong></dt>
+  <dd><%= @posting.posting_order_authority %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:posting_order_number) %>:</strong></dt>
+  <dd><%= @posting.posting_order_number %></dd>
+  <dt><strong>Posting Type:</strong></dt>
+  <dd><%= @posting.posting_type.posting_type_name %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:current_location) %>:</strong></dt>
+  <dd><%= @posting.current_location? ? 'Yes' : 'No' %></dd>
 </dl>
 
 <div class="form-actions">

@@ -8,6 +8,6 @@ development:
   encoding: utf8
   database: bhopal_demo 
   pool: 5
-  username: root
-  password: root
+  username: mphrmis
+  password: mphrmis@123
   socket: /var/run/mysqld/mysqld.sock
