@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130308084023) do
+ActiveRecord::Schema.define(:version => 20130315070705) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -338,8 +338,9 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
 
   create_table "cities", :force => true do |t|
     t.string   "city_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "city_state", :limit => 100
   end
 
   create_table "dependents", :force => true do |t|
@@ -481,6 +482,7 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
 
   create_table "employee_sanction_working", :id => false, :force => true do |t|
     t.integer "employee_id"
+    t.integer "employee_cadre_id"
     t.string  "emp_full_name"
     t.string  "gender_name"
     t.date    "join_date"
@@ -550,6 +552,7 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
 
   create_table "employees_details", :id => false, :force => true do |t|
     t.integer "employee_id"
+    t.integer "employee_cadre_id"
     t.string  "emp_full_name"
     t.string  "gender_name"
     t.date    "join_date"
@@ -584,6 +587,11 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
     t.string  "statusband",        :limit => 14
   end
 
+  create_table "graph_hospital_vacant", :id => false, :force => true do |t|
+    t.integer "id",                  :null => false
+    t.string  "Specialisation_name"
+  end
+
   create_table "graph_hospital_vacant_by_band", :id => false, :force => true do |t|
     t.integer "specialisation_id",                             :null => false
     t.string  "specialisation"
@@ -592,6 +600,11 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
   end
 
   create_table "graph_hospital_vacant_by_bands", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "graph_hospital_vacants", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -822,8 +835,9 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
 
   create_table "qualification_types", :force => true do |t|
     t.string   "Qualification_type"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "Qualification_type_eng", :limit => 100
   end
 
   create_table "qualifications", :force => true do |t|
@@ -890,6 +904,20 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "rpt_data_gaps", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.string  "district_name"
+    t.integer "total_employees",       :limit => 8,                                :default => 0, :null => false
+    t.integer "father_name_missing",   :limit => 8,                                :default => 0, :null => false
+    t.integer "dob_missing",           :limit => 8,                                :default => 0, :null => false
+    t.integer "category_missing",      :limit => 8,                                :default => 0, :null => false
+    t.integer "fjoindate_missing",     :limit => 8,                                :default => 0, :null => false
+    t.integer "maritalstatus_missing", :limit => 8,                                :default => 0, :null => false
+    t.integer "registration_missing",  :limit => 8,                                :default => 0, :null => false
+    t.integer "treasurycode_missing",  :limit => 8,                                :default => 0, :null => false
+    t.decimal "percentage_missing",                 :precision => 32, :scale => 2
+  end
+
   create_table "sanctioned_by_designation", :id => false, :force => true do |t|
     t.string  "designation_english"
     t.string  "designation_hindi"
@@ -910,6 +938,7 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
   end
 
   add_index "sanctioned_posts", ["designation_id"], :name => "index_sanctioned_posts_on_designation_id"
+  add_index "sanctioned_posts", ["hospital_id", "designation_id"], :name => "sanc_desig"
   add_index "sanctioned_posts", ["hospital_id"], :name => "index_sanctioned_posts_on_hospital_id"
 
   create_table "showcauses", :force => true do |t|
@@ -1106,6 +1135,46 @@ ActiveRecord::Schema.define(:version => 20130308084023) do
     t.date    "posting_to"
     t.string  "payscale"
     t.integer "posting_type_id"
+  end
+
+  create_table "vw_data_gaps_category", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "category_missing", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_dob", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "dob_missing", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_fathername", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "Father_name_missing", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_fjoindate", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "fjoindate_missing", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_maritalstatus", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "maritalstatus_missing", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_registration", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "registration_missing", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_total", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "total_employees", :limit => 8, :default => 0, :null => false
+  end
+
+  create_table "vw_data_gaps_treasurycode", :id => false, :force => true do |t|
+    t.integer "district_id"
+    t.integer "treasurycode_missing", :limit => 8, :default => 0, :null => false
   end
 
   create_table "vw_sanctioned_working_by_hospital", :id => false, :force => true do |t|

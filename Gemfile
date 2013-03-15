@@ -23,6 +23,7 @@ gem 'inherited_resources'
 #gem 'bootstrap-editable-rails'
 
 gem 'pdfkit'
+gem 'ransack'
 gem 'devise'
 gem 'haml'
 gem 'best_in_place'

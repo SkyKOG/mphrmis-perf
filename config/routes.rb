@@ -1,4 +1,7 @@
 Beauty::Application.routes.draw do
+  resources :graph_hospital_vacants
+
+
   resources :posting_types
 
 

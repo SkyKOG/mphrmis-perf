@@ -70,7 +70,7 @@
     </tr>
     <tr>
         <td>Date of Birth</td>
-        <td><%=@employee.emp_dob.strftime('%d-%m-%Y') %></td>                          
+	<td><%=@employee.try(:emp_dob).try(:strftime, "%d-%m-%Y") || "Not Entered"%></td>
     </tr>
     <tr>
         <td>Category</td>
