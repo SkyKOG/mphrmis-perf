@@ -9,4 +9,6 @@ class District < ActiveRecord::Base
   has_many:sanctioned_post
 
   validates_associated :blocks, :division
+
+  has_many:employees
 end

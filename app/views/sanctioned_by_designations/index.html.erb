@@ -18,7 +18,7 @@
         <th>Total Sanctioned</th>
     </tr>
   </thead>
-<tbody>
+<tbody id="sanctioned_by_designations">
 <% @sanctioned_by_designations.each do |sanctioned_by_designation| %>
   <tr>
 	<td><%= sanctioned_by_designation.designation_english %></td>
@@ -30,27 +30,27 @@
 </table>
 </div>
         <div class="span8">
-                <%= content_tag :div, "", id: "desig_chart", data: {sanctioned_by_designations: @sanctioned_by_designations} %>
+		<%= content_tag :div, "", id: "desig_chart" %>
         </div>
 </div>
 
 <script>
-Morris.Bar({
-          element: 'desig_chart',
-	  data: [{"designation_english":"Director","designation_hindi":"\u0938\u0902\u091a\u093e\u0932\u0915 ","total_sanctioned":5},{"designation_english":"Joint Director, Health Services","designation_hindi":"\u0938\u0902\u092f\u0941\u0915\u094d\u0924 \u0938\u0902\u091a\u093e\u0932\u0915, \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0938\u0947\u0935\u093e\u092f\u0947\u0902","total_sanctioned":6},{"designation_english":"Chief Medical & Health Officer","designation_hindi":"\u092e\u0941\u0916\u094d\u092f \u091a\u093f\u0915\u093f\u0924\u094d\u0938\u093e \u090f\u0935\u0902 \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":50},{"designation_english":"Deputy Director Health Services","designation_hindi":"\u0909\u092a \u0938\u0902\u091a\u093e\u0932\u0915, \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0938\u0947\u0935\u093e\u092f\u0947\u0902","total_sanctioned":36},{"designation_english":"Principal","designation_hindi":"\u092a\u094d\u0930\u093e\u091a\u093e\u0930\u094d\u092f","total_sanctioned":2},{"designation_english":"Superintendent","designation_hindi":"\u0905\u0927\u0940\u0915\u094d\u0937\u0915","total_sanctioned":2},{"designation_english":"District Leprosy Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u0915\u0941\u0937\u094d\u091f \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":17},{"designation_english":"District Immunisation Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u091f\u0940\u0915\u093e\u0915\u0930\u0923 \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":50},{"designation_english":"District Health Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":50},{"designation_english":"District Family Welfare Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u092a\u0930\u093f\u0935\u093e\u0930 \u0915\u0932\u094d\u092f\u093e\u0923 \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":50},{"designation_english":"District Health & Epidemic Control Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u090f\u0935\u0902 \u092e\u0939\u093e\u092e\u093e\u0930\u0940 \u0928\u093f\u092f\u0902\u0924\u094d\u0930\u0923 \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":20},{"designation_english":"Assistant Director","designation_hindi":"\u0938\u0939\u093e\u092f\u0915 \u0938\u0902\u091a\u093e\u0932\u0915","total_sanctioned":7},{"designation_english":"District Malaria Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u092e\u0932\u0947\u0930\u093f\u092f\u093e \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":1},{"designation_english":"Child Specialist","designation_hindi":"\u0936\u093f\u0936\u0941 \u0930\u094b\u0917 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e ","total_sanctioned":467},{"designation_english":"Medical Specialist","designation_hindi":"\u092e\u0947\u0921\u0940\u0915\u0932 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":588},{"designation_english":"Obstetrics & Gynaecologist","designation_hindi":"\u0938\u094d\u0924\u094d\u0930\u0940 \u0930\u094b\u0917 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":572},{"designation_english":"Surgical Specialist","designation_hindi":"\u0938\u0930\u094d\u091c\u0940\u0915\u0932 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e ","total_sanctioned":507},{"designation_english":"Eye Specialist","designation_hindi":"\u0928\u0947\u0924\u094d\u0930 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":100},{"designation_english":"Anaesthesia Specialist","designation_hindi":"\u0928\u093f\u0936\u094d\u091a\u0947\u0924\u0928\u093e \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":295},{"designation_english":"Dental Specialist","designation_hindi":"\u0926\u0902\u0924 \u0930\u094b\u0917 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":50},{"designation_english":"Pathology Specialist","designation_hindi":"\u092a\u0947\u0925\u093e\u0932\u093e\u091c\u0940 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":108},{"designation_english":"Orthopaedic Specialist","designation_hindi":"\u0905\u0938\u093f\u0925 \u0930\u094b\u0917 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":149},{"designation_english":"ENT Specialist","designation_hindi":"\u0930\u094d\u0907.\u090f\u0928.\u091f\u0940. \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e ","total_sanctioned":78},{"designation_english":"TB Specialist","designation_hindi":"\u0915\u094d\u0937\u092f \u0930\u094b\u0917 \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","total_sanctioned":52},{"designation_english":"Radiologist","designation_hindi":"\u0930\u0947\u0921\u093f\u092f\u094b \u0932\u093e\u091c\u093f\u0938\u094d\u091f","total_sanctioned":90},{"designation_english":"District TB Officer","designation_hindi":"\u091c\u093f\u0932\u093e \u0915\u094d\u0937\u092f \u0905\u0927\u093f\u0915\u093e\u0930\u0940 ","total_sanctioned":3},{"designation_english":"Dental Surgeon","designation_hindi":"\u0926\u0902\u0924 \u0936\u0932\u094d\u092f \u091a\u093f\u0915\u093f\u0924\u094d\u0938\u0915","total_sanctioned":144},{"designation_english":"Medical Officer","designation_hindi":"\u091a\u093f\u0915\u093f\u0924\u094d\u0938\u093e \u0905\u0927\u093f\u0915\u093e\u0930\u0940","total_sanctioned":3812},{"designation_english":"Regional Joint Director","designation_hindi":"\u0930\u0940\u091c\u0928\u0932 \u091c\u094d\u0935\u093e\u0902\u091f \u0921\u093e\u0930\u0947\u0915\u094d\u091f\u0930","total_sanctioned":7},{"designation_english":"Additional Director","designation_hindi":"","total_sanctioned":2},{"designation_english":"Joint Director (Devlopment)","designation_hindi":"","total_sanctioned":1},{"designation_english":"District Program Officer","designation_hindi":null,"total_sanctioned":7}],
-          xkey: 'designation_english',
-          ykeys: ['total_sanctioned'],
-          labels: ['Total Sanctioned'],
-          hideHover: 'true',
-  barColors: function (row, series, type) {
-    if (type === 'bar') {
-      var blue = Math.floor(255 * row.y / this.ymax);
-      return 'rgb(' + blue + ',0,0)';
-    }
-    else {
-      return '#000';
-    }
-  }
+var data = [];
+ 
+$('tbody#sanctioned_by_designations tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
 });
+ 
+
+Morris.Donut({
+  element: 'desig_chart',
+  data: data
+});
+ 
 
 </script>

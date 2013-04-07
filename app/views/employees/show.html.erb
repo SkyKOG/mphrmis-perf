@@ -37,11 +37,15 @@
     <tr>
     <tr>
         <td>Employee Cadre</td>
-        <td><%=@employee.employee_cadre.employee_cadre_type %></td>
+	<td><%=@employee.try(:employee_cadre).try(:employee_cadre_type) || "N/A" %></td>
     </tr>
     <tr>
         <td>Employee DDO Code</td>
         <td><%=@employee.ddo_code %></td>
+    </tr>
+    <tr>
+        <td>Employment Type</td>
+        <td><%= best_in_place @employee, :employment_type_id, :type => :select , :collection => EmploymentType.all.map{ |e| [e.id, e.employment_type] } %></td>
     </tr>
     <tr>
         <td>Full Name</td>
@@ -93,9 +97,14 @@
         <td><%= best_in_place @employee, :blood_group_id, :type => :select , :collection => BloodGroup.all.map{ |e| [e.id, e.blood_group_type] } %></td>
     </tr>
     <tr>
-        <td>Location</td>
-        <td> <%= @employee.postings.last.try(:hospital).try(:hospital_name) || "N/A" %> </td>                          
+        <td>Currently Assigned Location</td>
+	<td> <%= @employee.postings.last.try(:hospital).try(:hospital_name) || "N/A / Still at Initial Position" %> </td>    
     </tr>                             
+    <tr>
+        <td>Joining Location</td>
+        <td> <%= @employee.try(:hospital).try(:hospital_name)|| "N/A" %> </td>
+    </tr>
+
   </tbody>
 </table>
 </div>
@@ -315,7 +324,7 @@
     <% @employee.postings.each do |posting| %>
       <tr>
    <!--     <td><%= link_to posting.id, posting_path(posting) %></td>-->
-        <td><%= posting.hospital.hospital_name %></td>
+        <td><%= link_to posting.hospital.hospital_name,hospital_path(posting.hospital_id) %></td>
         <td><%= posting.designation.Designation_English %></td>
         <td><%= posting.designation.Designation_Hindi %></td>
         <td><%= posting.posting_from.strftime('%d-%m-%Y') %></td>

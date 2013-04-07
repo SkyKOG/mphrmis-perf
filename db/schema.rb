@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315070705) do
+ActiveRecord::Schema.define(:version => 20130406151020) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -353,6 +353,8 @@ ActiveRecord::Schema.define(:version => 20130315070705) do
     t.datetime "updated_at",      :null => false
     t.string   "employee_no"
     t.integer  "relationship_id"
+    t.integer  "district_id"
+    t.integer  "block_id"
   end
 
   create_table "designation_specialisations", :force => true do |t|
@@ -481,22 +483,33 @@ ActiveRecord::Schema.define(:version => 20130315070705) do
   end
 
   create_table "employee_sanction_working", :id => false, :force => true do |t|
-    t.integer "employee_id"
     t.integer "employee_cadre_id"
+    t.integer "employee_id"
     t.string  "emp_full_name"
     t.string  "gender_name"
     t.date    "join_date"
     t.integer "employee_class"
+    t.integer "qualification_name_id"
     t.string  "qualification_name"
     t.integer "specialisation_id"
-    t.integer "designation_id"
     t.string  "specialisation_name"
+    t.integer "designation_id"
+    t.string  "Designation_English"
+    t.string  "Designation_hindi"
+    t.integer "employment_type_id"
     t.string  "employment_type"
+    t.integer "status_id"
     t.string  "status_name"
+    t.integer "district_id"
     t.string  "district_name"
     t.integer "hospital_id"
     t.string  "hospital_name"
     t.integer "sanctioned_posts"
+  end
+
+  create_table "employee_sanction_workings", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "employee_tenure_by_band", :id => false, :force => true do |t|
@@ -546,6 +559,10 @@ ActiveRecord::Schema.define(:version => 20130315070705) do
     t.integer  "employee_cadre_id"
     t.integer  "ddo_num"
     t.integer  "ddo_code"
+    t.integer  "district_id"
+    t.integer  "division_id"
+    t.integer  "block_id"
+    t.integer  "hospital_id"
   end
 
   add_index "employees", ["emp_loc_master_id"], :name => "emp_loc_master_id"
@@ -557,14 +574,18 @@ ActiveRecord::Schema.define(:version => 20130315070705) do
     t.string  "gender_name"
     t.date    "join_date"
     t.integer "employee_class"
+    t.integer "qualification_name_id", :default => 0, :null => false
     t.string  "qualification_name"
-    t.integer "specialisation_id",   :default => 0, :null => false
-    t.integer "designation_id",                     :null => false
+    t.integer "specialisation_id",     :default => 0, :null => false
+    t.integer "designation_id",                       :null => false
     t.string  "specialisation_name"
+    t.integer "employment_type_id",    :default => 0, :null => false
     t.string  "employment_type"
+    t.integer "status_id",             :default => 0, :null => false
     t.string  "status_name"
+    t.integer "district_id",           :default => 0, :null => false
     t.string  "district_name"
-    t.integer "hospital_id",         :default => 0, :null => false
+    t.integer "hospital_id",           :default => 0, :null => false
     t.string  "hospital_name"
   end
 
@@ -580,11 +601,26 @@ ActiveRecord::Schema.define(:version => 20130315070705) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "graph_employee_status", :id => false, :force => true do |t|
+    t.integer "id",                  :default => 0, :null => false
+    t.string  "Specialisation_name"
+  end
+
   create_table "graph_employee_status_by_band", :id => false, :force => true do |t|
     t.integer "specialisation_id",                                              :default => 0, :null => false
     t.string  "specialisation"
     t.decimal "nos",                             :precision => 32, :scale => 0
     t.string  "statusband",        :limit => 14
+  end
+
+  create_table "graph_employee_status_by_bands", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "graph_employee_statuses", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "graph_hospital_vacant", :id => false, :force => true do |t|
@@ -935,6 +971,9 @@ ActiveRecord::Schema.define(:version => 20130315070705) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "designation_id"
+    t.integer  "district_id"
+    t.integer  "division_id"
+    t.integer  "block_id"
   end
 
   add_index "sanctioned_posts", ["designation_id"], :name => "index_sanctioned_posts_on_designation_id"

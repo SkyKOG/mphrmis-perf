@@ -10,6 +10,7 @@
       <th>Employee Full Name</th>
       <th>Current Posting</th>
       <th>Employee Qualifications</th>
+      <th>Employment Type</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
         <td><%= link_to employee.emp_full_name,employee_path(employee) %></td>
 	<td><%= employee.postings.last.try(:hospital).try(:hospital_name) || "N/A" %></td>
 	<td><%= employee.qualifications.collect{|u| u.qualification_name.Qualification_name}.join(', ') %></td>
+        <td><%= employee.try(:employment_type).try(:employment_type) || "N/A" %></td>
       </tr>
     <% end %>
   </tbody>

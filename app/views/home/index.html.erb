@@ -35,10 +35,25 @@
               <div id="mp_logo">
                   <h1>
                     <strong>Human Resources - MIS</strong><br>
-                    <small>Department of Public Health & Family Welfare</small>
+                    <small>Department of Public Health & Family Welfare [Data Entry Application]</small>
                   </h1>
             </div>
      </div>
+
+  <%= search_form_for @q do |f| %>
+<%= f.label :hospital_id_eq %>
+  <%= f.text_field :hospital_id_eq %>
+
+
+    <div class="form-actions">
+        <%= f.submit "Search", :name => nil, :class => "btn" %>
+    </div>
+
+
+<% end %>
    </div>
+
+
+
 </body>
 

@@ -9,4 +9,6 @@ class Division < ActiveRecord::Base
   has_many:sanctioned_posts
 
   validates_associated :districts
+  has_many:employees
+
 end

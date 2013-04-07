@@ -6,8 +6,8 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: bhopal_demo 
+  database: mphrmis_dev 
   pool: 5
-  username: mphrmis
-  password: mphrmis@123
+  username: root
+  password: spindoctor
   socket: /var/run/mysqld/mysqld.sock

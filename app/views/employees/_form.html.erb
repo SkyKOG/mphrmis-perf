@@ -1,6 +1,8 @@
 <%= simple_form_for @employee, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :emp_id, label: 'Employee ID'%>
   <%= f.input :emp_full_name, label: "Employee's Full Name"%>
+  <%= f.association :employee_cadre,label_method: :employee_cadre_type, value_method: :id, include_blank: false%>
+  <%= f.association :employment_type,label_method: :employment_type, value_method: :id, include_blank: false%>
   <%= f.input :emp_fname, label: 'First Name'%>
   <%= f.input :emp_mname, label: 'Middle Name'%>
   <%= f.input :emp_lname, label: 'Last Name'%>
@@ -15,6 +17,19 @@
 
   <%= f.input :emp_permanent_address %>
   <%= f.input :emp_loc_master_id %>
+  <%= f.association :division,label_method: :division_name, value_method: :id, include_blank: false%>
+
+  <%= f.input :district_id do %>
+      <%= f.grouped_collection_select :district_id, Division.order(:division_name), :districts, :division_name, :id, :district_name, include_blank: true, label: 'District'  %>
+  <% end %>
+
+  <%= f.input :block_id do %>
+      <%= f.grouped_collection_select :block_id, District.order(:district_name), :blocks, :district_name, :id, :block_name, include_blank: true, label: 'Block' %>
+  <% end %>
+
+  <%= f.input :hospital_id do %>
+      <%= f.grouped_collection_select :hospital_id, Block.order(:block_name), :hospitals, :block_name, :id, :hospital_name, include_blank: true, label: 'Hospital' %>
+  <% end %>
   <%= f.input :emp_phone_no %>
   <%= f.input :emp_mobile_no %>
   <%= f.input :emp_email %>
@@ -24,3 +39,4 @@
                 employees_path, :class => 'btn' %>              
   </div>
 <% end %>
+

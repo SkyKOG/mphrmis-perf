@@ -1,4 +1,4 @@
 class EmploymentType < ActiveRecord::Base
   attr_accessible :employment_type
-  belongs_to:employee
+  has_many:employees
 end

@@ -1,0 +1,44 @@
+<%- model_class = EmployeeSanctionWorking -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-bordered" id="empworksac1">
+  <thead>
+    <tr>
+      <th>Hospital ID</th>
+      <th>Employee Name</th>
+      <th>Working Since</th>
+      <th>Employment Type</th>
+      <th>Employee Class</th>
+      <th>Specialisation</th>
+      <th>Qualification</th>
+      <th>Designation (English)</th>
+      <th>Designation (Hindi)</th>
+      <th>Working Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employee_sanction_workings.each do |empsancwork| %>
+      <tr>
+          <td><%= empsancwork.try(:hospital_id) || "N/A" %></td>
+          <td><%= empsancwork.emp_full_name %></td>
+          <td><%= empsancwork.try(:join_date).try(:strftime, "%d-%m-%Y") || "Not Entered" %></td>
+          <td><%= empsancwork.employment_type%></td>
+    <td><%= empsancwork.employee_class%></td>
+          <td><%= empsancwork.specialisation_name%></td>
+          <td><%= empsancwork.qualification_name%></td>
+          <td><%= empsancwork.Designation_English%></td>
+          <td><%= empsancwork.Designation_hindi%></td>
+          <td><%= empsancwork.status_name%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+    $(document).ready(function() {
+      $('#empworksac1').dataTable( {
+        "sPaginationType": "bootstrap"
+      } );
+    }
+  );
+</script>

@@ -1,12 +1,11 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.oesmith.co.uk/morris-0.4.1.min.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
 
 <h1>Hospital Vacant By Band</h1>
-<br><br>
-<%= content_tag :div, "", id: "hosvac_chart", data: {graph_hospital_vacant_by_bands: @graph_hospital_vacant_by_bands} %>
 
+<br><br>
 <div class="row">
 <div class="span4">
 
@@ -31,7 +30,7 @@
         <th>No.</th>
     </tr>
   </thead>
-<tbody>
+<tbody id="graph_hospital_vacant_by_bands">
 <% @graph_hospital_vacant_by_bands.each do |graph_hospital_vacant_by_band| %>
   <tr>
 	     <td><%= graph_hospital_vacant_by_band.specialisation.Specialisation_name %></td>
@@ -42,4 +41,26 @@
 </tbody>
 </table>
 </div>
+    <div class="span8">
+                <%= content_tag :div, "", id: "hosp_chart" %>
+        </div>
 </div>
+<script>
+var data = [];
+ 
+$('tbody#graph_hospital_vacant_by_bands tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:nth-child(2)').text()
+  };
+ 
+  data.push(row);
+});
+ 
+
+Morris.Donut({
+  element: 'hosp_chart',
+  data: data
+});
+ 
+</script>

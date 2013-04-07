@@ -1,4 +1,13 @@
 Beauty::Application.routes.draw do
+  resources :graph_employee_statuses
+
+
+  resources :employee_sanction_workings
+
+
+  resources :graph_employee_status_by_bands
+
+
   resources :graph_hospital_vacants
 
 

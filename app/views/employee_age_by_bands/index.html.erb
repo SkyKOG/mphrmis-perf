@@ -17,7 +17,7 @@
         <th>Number of Employees</th>
     </tr>
   </thead>
-<tbody>
+<tbody id="employee_age_by_bands">
 <% @employee_age_by_bands.each do |employee_age_by_band| %>
   <tr>
         <td><%= employee_age_by_band.ageband %></td>
@@ -28,28 +28,28 @@
 </table>
 </div>
         <div class="span8">
-                <%= content_tag :div, "", id: "age_chart", data: {employee_age_by_bands: @employee_age_by_bands} %>
+                <%= content_tag :div, "", id: "age_chart" %>
         </div>
 </div>
 
 <script>
-Morris.Bar({
-          element: 'age_chart',
-	  data:[{"ageband":"Unknown","number_of_employees":590},{"ageband":"31-40","number_of_employees":1065},{"ageband":"41-50","number_of_employees":918},{"ageband":"51-60","number_of_employees":1589},{"ageband":"Below 30","number_of_employees":310},{"ageband":"Over 60","number_of_employees":505}],
-          xkey: 'ageband',
-          ykeys: ['number_of_employees'],
-          labels: ['Number Of Employees'],
-          hideHover: 'true',
-  barColors: function (row, series, type) {
-    if (type === 'bar') {
-      var blue = Math.floor(255 * row.y / this.ymax);
-      return 'rgb(' + blue + ',0,0)';
-    }
-    else {
-      return '#000';
-    }
-  }
+var data = [];
+ 
+$('tbody#employee_age_by_bands tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
 });
+ 
+
+Morris.Donut({
+  element: 'age_chart',
+  data: data
+});
+ 
 
 </script>
 

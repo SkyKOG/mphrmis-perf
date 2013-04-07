@@ -9,4 +9,6 @@ class Block < ActiveRecord::Base
   has_many:sanctioned_posts
 
   validates_associated :district
+  has_many:employees
+
 end

@@ -12,45 +12,43 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-	<th>Number of Employees</th>
 	<th>Qualification Name</th>	
+	<th>Number of Employees</th>
     </tr>
   </thead>
-<tbody>
+<tbody id="emp_qual_views">
 <% @emp_qual_views.each do |emp_qual_view| %>
   <tr>
-	<td><%= emp_qual_view.number_of_employees %></td>
 	<td><%= emp_qual_view.qualification_name %></td>
+	<td><%= emp_qual_view.number_of_employees %></td>
   </tr>
 <% end %>
 </tbody>
 </table>
 </div>
 	<div class="span8">
-		<%= content_tag :div, "", id: "qual_chart", data: {emp_qual_views: @emp_qual_views} %>	
+		<%= content_tag :div, "", id: "qual_chart" %>
 	</div>
 
 </div>
 
-
 <script>
-Morris.Bar({
-          element: 'qual_chart',
-	  data: [{"number_of_employees":116,"qualification_name":"D.A."},{"number_of_employees":109,"qualification_name":"B.D.S."},{"number_of_employees":78,"qualification_name":"D.L.O."},{"number_of_employees":264,"qualification_name":"M.D.(Med)"},{"number_of_employees":2402,"qualification_name":"MBBS"},{"number_of_employees":221,"qualification_name":"D.G.O."},{"number_of_employees":57,"qualification_name":"D.O.&M.S."},{"number_of_employees":166,"qualification_name":"D.Ortho"},{"number_of_employees":42,"qualification_name":"Other"},{"number_of_employees":283,"qualification_name":"D.C.H."},{"number_of_employees":1,"qualification_name":"M.S.(Paed)"},{"number_of_employees":54,"qualification_name":"D.C.P."},{"number_of_employees":14,"qualification_name":"D.P.M."},{"number_of_employees":32,"qualification_name":"P.G.D.P.H.M"},{"number_of_employees":54,"qualification_name":"D.M.R.D."},{"number_of_employees":229,"qualification_name":"M.S.(Surg)"},{"number_of_employees":32,"qualification_name":"D.T.C.D."},{"number_of_employees":78,"qualification_name":"M.D.(Anes)"},{"number_of_employees":1,"qualification_name":"M.D.S."},{"number_of_employees":91,"qualification_name":"M.S.(ENT)"},{"number_of_employees":161,"qualification_name":"M.S.(Obs & Gyn)"},{"number_of_employees":47,"qualification_name":"D.Optho"},{"number_of_employees":102,"qualification_name":"M.S.(Opth)"},{"number_of_employees":96,"qualification_name":"M.S.(Orth)"},{"number_of_employees":161,"qualification_name":"M.D.(Paed)"},{"number_of_employees":55,"qualification_name":"M.D.(Path)"},{"number_of_employees":4,"qualification_name":"M.D.(Pharma)"},{"number_of_employees":5,"qualification_name":"M.D.(Phy)"},{"number_of_employees":8,"qualification_name":"M.D.(PSM)"},{"number_of_employees":38,"qualification_name":"M.D.(Radio)"},{"number_of_employees":1,"qualification_name":"M.C.T.D."},{"number_of_employees":2,"qualification_name":"D.C.M."},{"number_of_employees":2,"qualification_name":"M.S.(Microbiology)"},{"number_of_employees":1,"qualification_name":"M.D.(Bio)"},{"number_of_employees":3,"qualification_name":"D.H.A."},{"number_of_employees":4,"qualification_name":"M.D.(Comm.Med)"},{"number_of_employees":1,"qualification_name":"M.D.(Obs & Gyn)"},{"number_of_employees":4,"qualification_name":"P.G.D.M.C.H."},{"number_of_employees":3,"qualification_name":"D.M.R.E."}],          
-	  xkey: 'qualification_name',
-          ykeys: ['number_of_employees'],
-          labels: ['Number of Employees'],
-	  hideHover: 'true',
-  barColors: function (row, series, type) {
-    if (type === 'bar') {
-      var red = Math.ceil(255 * row.y / this.ymax);
-      return 'rgb(' + red + ',0,0)';
-    }
-    else {
-      return '#000';
-    }
-  }
+var data = [];
+ 
+$('tbody#emp_qual_views tr').each(function(){
+  var row = {
+    value: parseInt($(this).children('td:last').text()),
+    label: $(this).children('td:first').text()
+  };
+ 
+  data.push(row);
 });
+ 
 
+Morris.Donut({
+  element: 'qual_chart',
+  data: data
+});
+ 
 </script>
 
