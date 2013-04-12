@@ -26,11 +26,9 @@
           <p class="navbar-text pull-right">
             Logged in as:
             <a href="/users/edit" data-method="get"><%= current_user.fname %> <%= current_user.lname %></a>
-            <% if current_user.role.role_name == 'admin' %>
+            
             |
-            <a href="/user" data-method="get">Manage User</a>
-            <% end %>
-            |
+          
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           </p>
           <a class="brand" href="/home/index">HRMIS</a>

@@ -12,6 +12,7 @@ class Employee < ActiveRecord::Base
   has_many:addresses
   has_many:employee_work_details
   has_many:employee_sanction_workings
+  has_many:performaones
   
   belongs_to:gender
   belongs_to:category

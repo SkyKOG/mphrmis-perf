@@ -1,0 +1,61 @@
+<%- model_class = Performaone -%>
+<div class="page-header">
+  <h1>Employee Performance Data</h1>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      
+      <th>Employee Name</th>
+      <th>Employee Treasuty ID</th>
+      <th>Employee Designation</th>
+      <th>No. Of Leaves Taken</th>
+      <th>No. Of Patients Checked in OPD</th>
+      <th>No. Of Patients Admitted</th>
+      <th>No. Of Patients Admitted to Other Hospitals</th>
+      <th>No. Of Emergency Calls Attended</th>
+      <th>No. Of Emergency Duties Performed</th>
+      <th>No. Of MLC Performed</th>
+      <th>No. Of Postmortem Done</th>
+      <th>No. Of Days Present in Court</th>
+      <th>No. Of Major Operations</th>
+      <th>No. Of Minor Operations</th>
+      <th>No. Of Caesarion Operations</th>
+      <th>No. Of Lab Tests Conducted</th>
+      <th>No. Of Image Scans Conducted</th>
+      <th>Utilisation of Equipment By Self/Instruction</th>
+      <th>Information on Availaible Equipment</th>
+      <th>Equipment - Deficiency / Necessary Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @performaones.each do |performaone| %>
+      <tr>
+        <td><%= performaone.employee.emp_full_name %></td>
+        <td><%= performaone.employee.emp_treasury_id %></td>
+        <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
+        <td><%= performaone.leave_taken %></td>
+        <td><%= performaone.patients_opd %></td>
+        <td><%= performaone.patients_admit %></td>
+        <td><%= performaone.patients_ref %></td>
+        <td><%= performaone.emer_calls %></td>
+        <td><%= performaone.emer_duty %></td>
+        <td><%= performaone.mlc_perf %></td>
+        <td><%= performaone.postmor_perf %></td>
+        <td><%= performaone.court_presence %></td>
+        <td><%= performaone.op_major %></td>
+        <td><%= performaone.op_minor %></td>
+        <td><%= performaone.op_caesarion %></td>
+        <td><%= performaone.lab_tests %></td>
+        <td><%= performaone.image_tests %></td>
+        <td><%= performaone.equip %></td>
+        <td><%= performaone.equipdetail %></td>
+        <td><%= performaone.equipdefic %></td>
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

@@ -14,6 +14,8 @@ class Hospital < ActiveRecord::Base
   has_many:vw_sanctioned_working_by_hospitals
   has_many:employee_sanction_workings  
   has_many:employees
+  has_many:hospital_performas
+  has_many:performaones
 
   def self.to_csv(options = {})
   CSV.generate(options) do |csv|

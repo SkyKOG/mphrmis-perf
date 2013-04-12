@@ -1,0 +1,59 @@
+<%- model_class = HospitalPerforma -%>
+<div class="page-header">
+  <h1>Hospital Performance Data</h1>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Hospital Name</th>
+      <th><%= model_class.human_attribute_name(:division_id) %></th>
+      <th><%= model_class.human_attribute_name(:district_id) %></th>
+      <th>Outdoor Surgeries</th>
+      <th>Indoor Surgeries</th>
+      <th>Minor Surgeries</th>
+      <th>Major Surgeries</th>
+      <th>Normal Delivery</th>
+      <th>Caesarion Delivery</th>
+      <th><%= model_class.human_attribute_name(:pathology) %></th>
+      <th>X-Ray / Digital X-Ray / Dental X-Ray</th>
+      <th>Ultra Sound</th>
+      <th>CT Scan / MRI</th>
+      <th>ECG</th>
+      <th>ECO / EMT</th>
+      <th>Blood Unit Transfused</th>
+      <th>Hemo-Dialysis</th>
+      <th>MLC</th>
+      <th>Post Mortem</th>
+      <th><%= model_class.human_attribute_name(:remarks) %></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospital_performas.each do |hospital_performa| %>
+      <tr>
+        <td><%= hospital_performa.hospital.hospital_name %></td>
+        <td><%= hospital_performa.division.division_name %></td>
+        <td><%= hospital_performa.district.district_name %></td>
+        <td><%= hospital_performa.outdoor %></td>
+        <td><%= hospital_performa.indoor %></td>
+        <td><%= hospital_performa.minor_surgery %></td>
+        <td><%= hospital_performa.major_surgery %></td>
+        <td><%= hospital_performa.normal_delivery %></td>
+        <td><%= hospital_performa.caesarion_delivery %></td>
+        <td><%= hospital_performa.pathology %></td>
+        <td><%= hospital_performa.image_scans %></td>
+        <td><%= hospital_performa.ultra_sound %></td>
+        <td><%= hospital_performa.ctmri %></td>
+        <td><%= hospital_performa.ecg %></td>
+        <td><%= hospital_performa.ecotmt %></td>
+        <td><%= hospital_performa.blood_unit_transfused %></td>
+        <td><%= hospital_performa.hemo %></td>
+        <td><%= hospital_performa.mlc %></td>
+        <td><%= hospital_performa.post_mortem %></td>
+        <td><%= hospital_performa.remarks %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

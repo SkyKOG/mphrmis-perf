@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406151020) do
+ActiveRecord::Schema.define(:version => 20130410054830) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -663,6 +663,30 @@ ActiveRecord::Schema.define(:version => 20130406151020) do
     t.integer  "hospital_id"
   end
 
+  create_table "hospital_performas", :force => true do |t|
+    t.integer  "division_id"
+    t.integer  "district_id"
+    t.integer  "outdoor"
+    t.integer  "indoor"
+    t.integer  "minor_surgery"
+    t.integer  "major_surgery"
+    t.integer  "normal_delivery"
+    t.integer  "caesarion_delivery"
+    t.integer  "pathology"
+    t.integer  "image_scans"
+    t.integer  "ultra_sound"
+    t.integer  "ctmri"
+    t.integer  "ecg"
+    t.integer  "ecotmt"
+    t.integer  "blood_unit_transfused"
+    t.integer  "hemo"
+    t.integer  "mlc"
+    t.integer  "post_mortem"
+    t.text     "remarks"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "hospital_reports", :force => true do |t|
     t.integer  "hospital_id"
     t.integer  "NewReports"
@@ -809,6 +833,29 @@ ActiveRecord::Schema.define(:version => 20130406151020) do
     t.string   "martial_status_type"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "performaones", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "leave_taken"
+    t.integer  "patients_opd"
+    t.integer  "patients_admit"
+    t.integer  "patients_ref"
+    t.integer  "emer_calls"
+    t.integer  "emer_duty"
+    t.integer  "mlc_perf"
+    t.integer  "postmor_perf"
+    t.integer  "court_presence"
+    t.integer  "op_major"
+    t.integer  "op_minor"
+    t.integer  "op_caesarion"
+    t.integer  "lab_tests"
+    t.integer  "image_tests"
+    t.integer  "equip"
+    t.integer  "equipdetail"
+    t.integer  "equipdefic"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "pincodes", :force => true do |t|

@@ -1,0 +1,72 @@
+<%= simple_form_for @hospital_performa, :html => { :class => 'form-horizontal' } do |f| %>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+     <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :as => :hidden%>
+      <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id,include_blank: false, disabled: true %></td>
+      <td><%= f.association :division,label_method: :division_name, value_method: :id, include_blank: false%></td>
+      <td><%= f.association :district,label_method: :district_name, value_method: :id, include_blank: false%></td>
+        </tr>
+  <tr>
+      
+      <td><%= f.input :outdoor , label: 'Outdoor Surgeries' , input_html: { value: '0' } %></td>
+      <td><%= f.input :indoor , label: 'Indoor Surgeries' , input_html: { value: '0' }%></td>
+      <td><%= f.input :minor_surgery , label: 'Minor Surgeries' , input_html: { value: '0' }%></td>
+  </tr>
+  <tr>
+    
+      <td><%= f.input :major_surgery , label: 'Major Surgeries' , input_html: { value: '0' }%></td>
+      <td><%= f.input :normal_delivery , label: 'Normal Delivery' , input_html: { value: '0' }%></td>
+      <td><%= f.input :caesarion_delivery , label: 'Caesarion Delivery' , input_html: { value: '0' }%></td>
+  </tr>
+  <tr>
+
+      
+      <td><%= f.input :pathology , label: 'Pathology' , input_html: { value: '0' }%></td>
+       <td><%= f.input :image_scans , label: 'X-Ray / Digital X-Ray / Dental X-Ray' , input_html: { value: '0' }%></td>
+      <td><%= f.input :ultra_sound , label: 'Ultra-Sound' , input_html: { value: '0' }%></td>
+  </tr>
+  <tr>
+
+     
+      <td><%= f.input :ctmri , label: 'CT Scan / MRI' , input_html: { value: '0' }%></td>
+      <td><%= f.input :ecg , label: 'ECG' , input_html: { value: '0' }%></td>
+      <td><%= f.input :ecotmt , label: 'ECO / TMT' , input_html: { value: '0' }%></td>
+     
+  </tr>
+  <tr>
+       <td><%= f.input :blood_unit_transfused , label: 'Blood Unit Transfused' , input_html: { value: '0' }%></td>
+      <td><%= f.input :hemo , label: 'Hemo-Dialysis' , input_html: { value: '0' }%></td>
+      <td><%= f.input :mlc , label: 'MLC' , input_html: { value: '0' } %></td>
+  </tr>
+  <tr>
+
+      
+      <td><%= f.input :post_mortem , label: 'Post Mortem' , input_html: { value: '0' }%></td>
+      <td><%= f.input :remarks , label: 'Remarks'%></td>
+      <td></td>
+  </tr>
+  </tbody>
+</table>                                 
+  <div class="form-actions">
+    <%= f.submit "Submit", :name => nil, :class => "btn-primary" %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                hospital_performas_path, :class => 'btn' %>
+  </div>
+<% end %>

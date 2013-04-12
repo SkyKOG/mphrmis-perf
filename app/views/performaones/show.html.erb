@@ -1,0 +1,67 @@
+<%- model_class = Performaone -%>
+<div class="page-header">
+  <h1>Employee Performance</h1>
+</div>
+
+<table class="table table-bordered table-condensed">
+  <tbody>
+  <tr>
+    <td>Employee Name</td>
+    <td><%= @performaone.employee.emp_full_name %></td>
+  </tr>
+    <tr>
+    <td>Employee Treasuty ID</td>
+    <td><%= @performaone.employee.emp_treasury_id %></td>
+  </tr>
+    <tr>
+    <td>Employee Designation</td>
+    <td><%= @performaone.designation.Designation_English %></td>
+  </tr>
+  <tr>
+    <td>No. Of Leaves Taken</td>
+    <td><%= @performaone.leave_taken %></td>
+  </tr>
+  <tr>
+    <td>No. Of Patients Checked in OPD</td>
+    <td><%= @performaone.patients_opd %></td>
+  </tr>
+  <tr><td>No. Of Patients Admitted</td>
+  <td><%= @performaone.patients_admit %></td></tr>
+  <tr><td>No. Of Patients Admitted to Other Hospitals</td>
+  <td><%= @performaone.patients_ref %></td></tr>
+  <tr><td>No. Of Emergency Calls Attended</td>
+  <td><%= @performaone.emer_calls %></td></tr>
+  <tr><td>No. Of Emergency Duties Performed</td>
+  <td><%= @performaone.emer_duty %></td></tr>
+  <tr><td>No. Of MLC Performed</td>
+  <td><%= @performaone.mlc_perf %></td></tr>
+  <tr><td>No. Of Postmortem Done</td>
+  <td><%= @performaone.postmor_perf %></td></tr>
+  <tr><td>No. Of Days Present in Court</td>
+  <td><%= @performaone.court_presence %></td></tr>
+  <tr><td>No. Of Major Operations</td>
+  <td><%= @performaone.op_major %></td></tr>
+  <tr><td>No. Of Minor Operations</td>
+  <td><%= @performaone.op_minor %></td></tr>
+  <tr><td>No. Of Caesarion Operations</td>
+  <td><%= @performaone.op_caesarion %></td></tr>
+  <tr><td>No. Of Lab Tests Conducted</td>
+  <td><%= @performaone.lab_tests %></td></tr>
+  <tr><td>No. Of Image Scans Conducted</td>
+  <td><%= @performaone.image_tests %></td></tr>
+  <tr><td>Utilisation of Equipment By Self/Instruction</td>
+  <td><%= @performaone.equip %></td></tr>
+  <tr><td>Information on Availaible Equipment</td>
+  <td><%= @performaone.equipdetail %></td></tr>
+  <tr><td>Equipment - Deficiency / Necessary Action</td>
+  <td><%= @performaone.equipdefic %></td></tr>
+   </tbody>
+</table>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              performaones_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_performaone_path(@performaone), :class => 'btn' %>
+  
+</div>

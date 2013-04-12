@@ -1,39 +1,44 @@
 <%- model_class = EmployeeSanctionWorking -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%= @employee_sanction_workings.try(:first).try(:hospital_name) || "Not Entered" %> - Employee List</h1><br>
+  <%= link_to "Add Hospital Performance for this Hospital", new_hospital_performa_url(:id => @employee_sanction_workings.try(:first).try(:hospital_id)) %><br><br>
 </div>
 <table class="table table-bordered" id="empworksac1">
   <thead>
     <tr>
-      <th>Hospital ID</th>
+      
       <th>Employee Name</th>
-      <th>Working Since</th>
-      <th>Employment Type</th>
-      <th>Employee Class</th>
-      <th>Specialisation</th>
-      <th>Qualification</th>
       <th>Designation (English)</th>
       <th>Designation (Hindi)</th>
       <th>Working Status</th>
+      <th>Wrong Data ?</th>
+      <th>Add Data</th>
     </tr>
   </thead>
   <tbody>
     <% @employee_sanction_workings.each do |empsancwork| %>
       <tr>
-          <td><%= empsancwork.try(:hospital_id) || "N/A" %></td>
+          
           <td><%= empsancwork.emp_full_name %></td>
-          <td><%= empsancwork.try(:join_date).try(:strftime, "%d-%m-%Y") || "Not Entered" %></td>
-          <td><%= empsancwork.employment_type%></td>
-    <td><%= empsancwork.employee_class%></td>
-          <td><%= empsancwork.specialisation_name%></td>
-          <td><%= empsancwork.qualification_name%></td>
           <td><%= empsancwork.Designation_English%></td>
           <td><%= empsancwork.Designation_hindi%></td>
           <td><%= empsancwork.status_name%></td>
+          <td><%= check_box_tag "empsancwork_employee_ids[]", empsancwork.employee_id %></td>
+          <!-- <td><%= check_box_tag "empsancwork_employee_ids[]", empsancwork.employee_id %></td> -->
+          <td><%= link_to t('.new', :default => t("helpers.links.new")),
+            new_performaone_url(:id => empsancwork.employee_id),
+            :class => 'btn btn-mini btn-danger',:id => 'addnew' %></td>
       </tr>
     <% end %>
   </tbody>
-</table>
+</table><br><br>
+<!-- <a type="button" class="btn" style="width:25%;">Add Data for Selected Employees</a> -->
+<a type="button" class="btn" style="width:25%;">Invalidate Selected Employees</a>
+
+<script>
+  $('#addnew span').text('Add New');
+</script>
+
 <script>
     $(document).ready(function() {
       $('#empworksac1').dataTable( {

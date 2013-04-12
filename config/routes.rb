@@ -1,4 +1,10 @@
 Beauty::Application.routes.draw do
+  resources :hospital_performas, :path => "hosperfdata"
+
+
+  resources :performaones, :path => "docperfdata"
+
+
   resources :graph_employee_statuses
 
 

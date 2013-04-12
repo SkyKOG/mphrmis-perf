@@ -5,8 +5,10 @@ class District < ActiveRecord::Base
   has_many:institution_masters
   has_many:health_dept_locations
   has_many:blocks  
+  has_many:hospital_performas
   belongs_to:division
   has_many:sanctioned_post
+  has_many:performaones
 
   validates_associated :blocks, :division
 

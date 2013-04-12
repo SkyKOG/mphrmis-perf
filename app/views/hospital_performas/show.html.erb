@@ -1,0 +1,57 @@
+<%- model_class = HospitalPerforma -%>
+<div class="page-header">
+  <h1>Hospital Performance Data</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:division_id) %>:</strong></dt>
+  <dd><%= @hospital_performa.division_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:district_id) %>:</strong></dt>
+  <dd><%= @hospital_performa.district_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:outdoor) %>:</strong></dt>
+  <dd><%= @hospital_performa.outdoor %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:indoor) %>:</strong></dt>
+  <dd><%= @hospital_performa.indoor %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:minor_surgery) %>:</strong></dt>
+  <dd><%= @hospital_performa.minor_surgery %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:major_surgery) %>:</strong></dt>
+  <dd><%= @hospital_performa.major_surgery %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:normal_delivery) %>:</strong></dt>
+  <dd><%= @hospital_performa.normal_delivery %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:caesarion_delivery) %>:</strong></dt>
+  <dd><%= @hospital_performa.caesarion_delivery %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:pathology) %>:</strong></dt>
+  <dd><%= @hospital_performa.pathology %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image_scans) %>:</strong></dt>
+  <dd><%= @hospital_performa.image_scans %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ultra_sound) %>:</strong></dt>
+  <dd><%= @hospital_performa.ultra_sound %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ctmri) %>:</strong></dt>
+  <dd><%= @hospital_performa.ctmri %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ecg) %>:</strong></dt>
+  <dd><%= @hospital_performa.ecg %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ecotmt) %>:</strong></dt>
+  <dd><%= @hospital_performa.ecotmt %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:blood_unit_transfused) %>:</strong></dt>
+  <dd><%= @hospital_performa.blood_unit_transfused %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hemo) %>:</strong></dt>
+  <dd><%= @hospital_performa.hemo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mlc) %>:</strong></dt>
+  <dd><%= @hospital_performa.mlc %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:post_mortem) %>:</strong></dt>
+  <dd><%= @hospital_performa.post_mortem %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:remarks) %>:</strong></dt>
+  <dd><%= @hospital_performa.remarks %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              hospital_performas_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_hospital_performa_path(@hospital_performa), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              hospital_performa_path(@hospital_performa),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
