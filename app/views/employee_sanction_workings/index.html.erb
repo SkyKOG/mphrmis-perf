@@ -1,7 +1,7 @@
 <%- model_class = EmployeeSanctionWorking -%>
 <div class="page-header">
   <h1><%= @employee_sanction_workings.try(:first).try(:hospital_name) || "Not Entered" %> - Employee List</h1><br>
-  <%= link_to "Add Hospital Performance for this Hospital", new_hospital_performa_url(:id => @employee_sanction_workings.try(:first).try(:hospital_id))  , :class => 'btn btn-small btn-success'%><br><br>
+  <%= link_to "Add Hospital Performance Data", new_hospital_performa_url(:id => @employee_sanction_workings.try(:first).try(:hospital_id))  , :class => 'btn btn-small btn-success'%><br><br>
 </div>
 <table class="table table-bordered" id="empworksac1">
   <thead>
@@ -36,7 +36,7 @@
 <a type="button" class="btn" style="width:25%;">Invalidate Selected Employees</a>
 
 <script>
-  $('#addnew span').text('Add Monthly Performance Data');
+  $('#addnew span').text('Add Monthly Doctor Performance Data');
 </script>
 
 <script>
