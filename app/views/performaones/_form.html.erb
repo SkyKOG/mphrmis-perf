@@ -15,15 +15,26 @@
     </tr>
     <tr>
     </tr>
+    <tr>
+    </tr>
   </thead>
   <tbody>
+    <tr>
+        <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
+          <%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
+        <td></td>
+        <td></td>
+    </tr>
   <tr>
        <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, :as => :hidden%>
        <td><%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, disabled: true, label: 'Employee Name'%></td>
        <%= f.association :employee,label_method: :emp_treasury_id, value_method: :id, include_blank: false, :as => :hidden%>
        <td><%= f.association :employee,label_method: :emp_treasury_id, value_method: :id, include_blank: false, disabled: true, label: 'Employee Treasury ID'%></td>      
        <!--  -->
-       <td><%= f.association :designation,label_method: :Designation_English, value_method: :id, include_blank: false %></td>
+       <td><%= f.association :designation,label_method: :Designation_English, value_method: :id, include_blank: false, :selected => @performaone.employee.employee_work_details.first.designation_id %></td>
+        
+
+
   </tr>
   <tr>
       <td><%= f.input :leave_taken , label: 'No. Of Leaves Taken' , input_html: { value: '0' } %></td>   

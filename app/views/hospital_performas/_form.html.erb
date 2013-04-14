@@ -15,8 +15,16 @@
     </tr>
     <tr>
     </tr>
+    <tr>
+    </tr>
   </thead>
   <tbody>
+    <tr>
+        <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
+          <%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
+        <td></td>
+        <td></td>
+    </tr>
   <tr>
      <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :as => :hidden%>
       <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id,include_blank: false, disabled: true %></td>

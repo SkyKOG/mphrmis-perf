@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410054830) do
+ActiveRecord::Schema.define(:version => 20130413042942) do
 
   create_table "DependantDetails", :primary_key => "idno", :force => true do |t|
     t.text "EmpNo"
@@ -682,9 +682,10 @@ ActiveRecord::Schema.define(:version => 20130410054830) do
     t.integer  "hemo"
     t.integer  "mlc"
     t.integer  "post_mortem"
-    t.text     "remarks"
+    t.string   "remarks"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.integer  "hospital_id"
   end
 
   create_table "hospital_reports", :force => true do |t|
@@ -835,6 +836,12 @@ ActiveRecord::Schema.define(:version => 20130410054830) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "months", :force => true do |t|
+    t.string   "month_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "performaones", :force => true do |t|
     t.integer  "employee_id"
     t.integer  "leave_taken"
@@ -851,11 +858,16 @@ ActiveRecord::Schema.define(:version => 20130410054830) do
     t.integer  "op_caesarion"
     t.integer  "lab_tests"
     t.integer  "image_tests"
-    t.integer  "equip"
-    t.integer  "equipdetail"
-    t.integer  "equipdefic"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "equip"
+    t.string   "equipdetail"
+    t.string   "equipdefic"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "hospital_id"
+    t.integer  "designation_id"
+    t.integer  "emp_treasury_id"
+    t.integer  "month_id"
+    t.integer  "year"
   end
 
   create_table "pincodes", :force => true do |t|

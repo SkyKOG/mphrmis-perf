@@ -1,4 +1,7 @@
 Beauty::Application.routes.draw do
+  resources :months
+
+
   resources :hospital_performas, :path => "hosperfdata"
 
 
