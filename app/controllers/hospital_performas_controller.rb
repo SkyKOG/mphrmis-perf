@@ -15,4 +15,12 @@ class HospitalPerformasController < InheritedResources::Base
 		      end
     		end
 	end	
+
+	 def index
+		@hospital_performas = HospitalPerforma.order(:hospital_id)
+                respond_to do |format|
+                    format.html
+                    format.csv { render text: @hospital_performas.to_csv }
+                end
+        end
 end

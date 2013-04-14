@@ -2,6 +2,13 @@
 <div class="page-header">
   <h1>Hospital Performance Data</h1>
 </div>
+
+<p>
+  Download:
+  <%= link_to "PDF", hospital_performas_path(format: "pdf") , :class => 'btn btn-small btn-success' %> |
+  <%= link_to "CSV", hospital_performas_path(format: "csv") , :class => 'btn btn-small btn-success' %> 
+</p>
+<br>
 <table class="table table-bordered">
   <thead>
     <tr>

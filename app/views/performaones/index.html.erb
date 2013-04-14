@@ -2,13 +2,21 @@
 <div class="page-header">
   <h1>Employee Performance Data</h1>
 </div>
+
+<p>
+  Download:
+  <%= link_to "PDF", hospitals_path(format: "pdf") , :class => 'btn btn-small btn-success'%> |
+  <%= link_to "CSV", hospitals_path(format: "csv") , :class => 'btn btn-small btn-success' %> 
+</p>
+<br>
+
 <table class="table table-bordered">
   <thead>
     <tr>
       
       <th>Employee Name</th>
       <th>Employee Treasuty ID</th>
-      <!-- <th>Hospital</th> -->
+      <th>Hospital</th>
       <th>Employee Designation</th>
       <th>No. Of Leaves Taken</th>
       <th>No. Of Patients Checked in OPD</th>
@@ -27,6 +35,8 @@
       <th>Utilisation of Equipment By Self/Instruction</th>
       <th>Information on Availaible Equipment</th>
       <th>Equipment - Deficiency / Necessary Action</th>
+      <th>Month</th>
+      <th>Year</th>
     </tr>
   </thead>
   <tbody>
@@ -34,7 +44,7 @@
       <tr>
         <td><%= performaone.employee.emp_full_name %></td>
         <td><%= performaone.employee.emp_treasury_id %></td>
-        <!-- <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td> -->
+        <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
         <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
         <td><%= performaone.leave_taken %></td>
         <td><%= performaone.patients_opd %></td>
@@ -53,9 +63,9 @@
         <td><%= performaone.equip %></td>
         <td><%= performaone.equipdetail %></td>
         <td><%= performaone.equipdefic %></td>
-        
-        
-      </tr>
+        <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
+        <td><%= performaone.try(:year)|| "Not Entered" %></td>
+        </tr>
     <% end %>
   </tbody>
 </table>

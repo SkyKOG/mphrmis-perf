@@ -7,4 +7,29 @@ class Performaone < ActiveRecord::Base
   belongs_to:employee
   belongs_to:designation
   belongs_to:month
+
+	validates_numericality_of :court_presence, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :emer_calls, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :emer_duty, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :image_tests, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :lab_tests, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :leave_taken, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :mlc_perf, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :op_caesarion, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :op_major, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :op_minor, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :patients_admit, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :patients_opd, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :patients_ref, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+	validates_numericality_of :postmor_perf, :only_integer => true, :greater_than_or_equal_to => 0,:message => "Please enter 0 or a positive number"
+
+def self.to_csv(options = {})
+  CSV.generate(options) do |csv|
+    csv << column_names
+    all.each do |performaone|
+      csv << performaone.attributes.values_at(*column_names)
+    end
+  end
+end
+
 end

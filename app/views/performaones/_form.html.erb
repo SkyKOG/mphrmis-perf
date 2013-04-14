@@ -21,9 +21,10 @@
   <tbody>
     <tr>
         <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
-          <%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
-        <td></td>
-        <td></td>
+         </td>
+        <td> <%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
+        <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :selected => @performaone.employee.postings.last.try(:hospital_id), :as => :hidden %>
+        <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :selected => @performaone.employee.postings.last.try(:hospital_id), disabled: true %></td>
     </tr>
   <tr>
        <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, :as => :hidden%>
@@ -63,12 +64,13 @@
   <tr>
     <td><%= f.input :lab_tests, label: 'No. Of Lab Tests Conducted' , input_html: { value: '0' }  %></td>
       <td><%= f.input :image_tests, label: 'No. Of Image Scans Conducted' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :equip, label: 'Utilisation of Equipment By Self/Instruction' %></td>
+      <td></td>
       
   </tr>
   <tr>
-    <td><%= f.input :equipdetail, label: 'Information on Availaible Equipment' %></td>
-      <td><%= f.input :equipdefic, label: 'Equipment - Deficiency/Necessary Action' %></td>
+    <td><%= f.input :equip, label: 'Utilisation of Equipment By Self/Instruction', input_html: {style: 'height:80px;'} %></td>
+    <td><%= f.input :equipdetail, label: 'Information on Availaible Equipment' , input_html: {style: 'height:80px;'}%></td>
+      <td><%= f.input :equipdefic, label: 'Equipment - Deficiency/Necessary Action' , input_html: {style: 'height:80px;'}%></td>
   </tr>
   </tbody>
 </table>                                  
