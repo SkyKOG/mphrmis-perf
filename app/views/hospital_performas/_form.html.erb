@@ -13,24 +13,22 @@
     </tr>
     <tr>
     </tr>
-    <tr>
-    </tr>
-    <tr>
-    </tr>
+    
+    
   </thead>
   <tbody>
     <tr>
         <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
           </td>
-        <td><%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
-        <td></td>
-    </tr>
-  <tr>
-     <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :as => :hidden%>
+        <td><%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %> 
+
+       <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :as => :hidden%>
       <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id,include_blank: false, disabled: true %></td>
-      <td><%= f.association :division,label_method: :division_name, value_method: :id, include_blank: false%></td>
-      <td><%= f.association :district,label_method: :district_name, value_method: :id, include_blank: false%></td>
         </tr>
+    
+
+
+
   <tr>
       
       <td><%= f.input :outdoor , label: ' Outdoor' , input_html: { value: '0' } %></td>

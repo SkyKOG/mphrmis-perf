@@ -22,9 +22,9 @@
     <tr>
         <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
          </td>
-        <td> <%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
+        <td><%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
         <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :selected => @performaone.employee.postings.last.try(:hospital_id), :as => :hidden %>
-        <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :selected => @performaone.employee.postings.last.try(:hospital_id), disabled: true %></td>
+        
     </tr>
   <tr>
        <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, :as => :hidden%>

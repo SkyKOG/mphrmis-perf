@@ -11,9 +11,28 @@
         .form-actions{
         background: none;
       }
+                #mp_logo{
+            padding-left: 200px;
+            padding-right: 30px;
+            padding-top: 10px;
+
+          }
+
+          #mp_logo {
+        background-image: url("/assets/mp_logo.png");
+        background-repeat: no-repeat;
+        background-position: top left;
+        height: 155px;
+
+      }
   </style>
 
   </head>
+
+<body>
+  <div id="mp_logo">
+    <h3>Performance MIS</h3>
+</body>
 <h2>Sign in</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -29,6 +48,3 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
-
-<body>
-</body>

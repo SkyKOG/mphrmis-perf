@@ -14,5 +14,13 @@ class PerformaonesController < InheritedResources::Base
 		        format.json { render json: @performaone.errors, status: :unprocessable_entity }
 		      end
     		end
+
+    		 def index
+		@performaones = Performaone.order(:employee_id)
+                respond_to do |format|
+                    format.html
+                    format.csv { render text: @performaones.to_csv }
+                end
+        end
 	end		
 end

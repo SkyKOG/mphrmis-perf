@@ -13,8 +13,6 @@
   <thead>
     <tr>
       <th>Hospital Name</th>
-      <th><%= model_class.human_attribute_name(:division_id) %></th>
-      <th><%= model_class.human_attribute_name(:district_id) %></th>
       <th>Outdoor</th>
       <th>Indoor</th>
       <th>Minor Surgeries</th>
@@ -39,8 +37,6 @@
     <% @hospital_performas.each do |hospital_performa| %>
       <tr>
         <td><%= hospital_performa.hospital.hospital_name %></td>
-        <td><%= hospital_performa.division.division_name %></td>
-        <td><%= hospital_performa.district.district_name %></td>
         <td><%= hospital_performa.outdoor %></td>
         <td><%= hospital_performa.indoor %></td>
         <td><%= hospital_performa.minor_surgery %></td>
