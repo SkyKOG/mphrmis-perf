@@ -21,6 +21,7 @@ class HospitalPerformasController < InheritedResources::Base
                 respond_to do |format|
                     format.html
                     format.csv { render text: @hospital_performas.to_csv }
+                    format.xls
                 end
         end
 end

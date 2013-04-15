@@ -1,25 +1,13 @@
-<%- model_class = HospitalPerforma -%>
-<div class="page-header">
-  <h1>Hospital Performance Data</h1>
-</div>
-
-<p>
-  Download:
-  
-  <%= link_to "XLS", hospital_performas_path(format: "xls") , :class => 'btn btn-small btn-success' %> 
-</p>
-<br>
-<table class="table table-bordered">
-  <thead>
-    <tr>
+<table border="1">
+  <tr>
       <th>Hospital Name</th>
       <th>Outdoor</th>
       <th>Indoor</th>
       <th>Minor Surgeries</th>
       <th>Major Surgeries</th>
       <th>Normal Delivery</th>
-      <th>Caesarian Delivery</th>
-      <th><%= model_class.human_attribute_name(:pathology) %></th>
+      <th>Cesarean Delivery</th>
+      <th>Pathology</th>
       <th>X-Ray / Digital X-Ray / Dental X-Ray</th>
       <th>Ultra Sound</th>
       <th>CT Scan / MRI</th>
@@ -29,11 +17,8 @@
       <th>Hemo-Dialysis</th>
       <th>MLC</th>
       <th>Postmortem</th>
-      <th><%= model_class.human_attribute_name(:remarks) %></th>
-
+      <th>Remarks</th>
     </tr>
-  </thead>
-  <tbody>
     <% @hospital_performas.each do |hospital_performa| %>
       <tr>
         <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
@@ -54,9 +39,6 @@
         <td><%= hospital_performa.mlc %></td>
         <td><%= hospital_performa.post_mortem %></td>
         <td><%= hospital_performa.remarks %></td>
-        
       </tr>
     <% end %>
-  </tbody>
 </table>
-

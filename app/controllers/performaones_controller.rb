@@ -19,7 +19,8 @@ class PerformaonesController < InheritedResources::Base
 		@performaones = Performaone.order(:employee_id)
                 respond_to do |format|
                     format.html
-                    format.csv { render text: @performaones.to_csv }
+                    format.csv { send_data @performaones.to_csv }
+                    format.xls # { send_data @performaones.to_csv(col_sep: '\t') }
                 end
         end
 	end	

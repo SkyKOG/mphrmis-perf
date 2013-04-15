@@ -1,19 +1,5 @@
-<%- model_class = Performaone -%>
-<div class="page-header">
-  <h1>Employee Performance Data</h1>
-</div>
-
-<p>
-  Download:
-  
-  <%= link_to "XLS", performaones_path(format: "xls") , :class => 'btn btn-small btn-success' %> 
-</p>
-<br>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      
+<table border="1">
+	<tr>
       <th>Name of Doctor</th>
       <th>Employee Treasury ID</th>
       <th>Hospital</th>
@@ -37,11 +23,9 @@
       <th>Equipment - Deficiency / Necessary Action</th>
       <th>Month</th>
       <th>Year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @performaones.each do |performaone| %>
-      <tr>
+	</tr>	
+	<% @performaones.each do |performaone|%>
+		<tr>
         <td><%= performaone.employee.emp_full_name %></td>
         <td><%= performaone.employee.emp_treasury_id %></td>
         <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
@@ -65,9 +49,6 @@
         <td><%= performaone.equipdefic %></td>
         <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
         <td><%= performaone.try(:year)|| "Not Entered" %></td>
-        </tr>
-    <% end %>
-  </tbody>
+		</tr>
+	<% end %>
 </table>
-
-
