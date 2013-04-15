@@ -23,53 +23,54 @@
         <td><%= f.association :month,label_method: :month_name, value_method: :id, include_blank: false, :selected => 4%>
          </td>
         <td><%= f.input :year, collection: 1960..2050,include_blank: false, :selected => 2013 %></td>
-        <%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :selected => @performaone.employee.postings.last.try(:hospital_id), :as => :hidden %>
+        <td><%= f.association :hospital,label_method: :hospital_name, value_method: :id, include_blank: false, :selected => @performaone.try(:hospital_id) , :as => :hidden%></td>
+        
         
     </tr>
   <tr>
        <%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, :as => :hidden%>
-       <td><%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, disabled: true, label: 'Employee Name'%></td>
+       <td><%= f.association :employee,label_method: :emp_full_name, value_method: :id, include_blank: false, disabled: true, label: 'Name of Doctor'%></td>
        <%= f.association :employee,label_method: :emp_treasury_id, value_method: :id, include_blank: false, :as => :hidden%>
        <td><%= f.association :employee,label_method: :emp_treasury_id, value_method: :id, include_blank: false, disabled: true, label: 'Employee Treasury ID'%></td>      
        <!--  -->
-       <td><%= f.association :designation,label_method: :Designation_English, value_method: :id, include_blank: false, :selected => @performaone.employee.employee_work_details.first.designation_id %></td>
+       <td><%= f.association :designation,label_method: :Designation_English, value_method: :id, include_blank: false, :selected => @performaone.employee.employee_work_details.first.designation_id, label: 'Post / Specialist' %></td>
         
 
 
   </tr>
   <tr>
-      <td><%= f.input :leave_taken , label: ' Leaves Taken' , input_html: { value: '0' } %></td>   
-      <td><%= f.input :patients_opd , label: ' Patients Checked In OPD' , input_html: { value: '0' } %></td>
-      <td><%= f.input :patients_admit, label: ' Patients Admitted' , input_html: { value: '0' }  %></td>
+      <td><%= f.input :leave_taken , label: 'Leaves Taken in the Month' %></td>   
+      <td><%= f.input :patients_opd , label: 'No. of Patients Checked In OPD in the Month' %></td>
+      <td><%= f.input :patients_admit, label: 'No. of Patients Admitted'  %></td>
       
   </tr>
   <tr>
-    <td><%= f.input :patients_ref, label: ' Patents Reffered to Other Hospitals' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :emer_calls, label: ' Emergency Calls Attended' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :emer_duty, label: ' Emergency Duties Performed' , input_html: { value: '0' }  %></td>
+    <td><%= f.input :patients_ref, label: 'No. of Patents Referred to Other Hospitals'  %></td>
+      <td><%= f.input :emer_calls, label: 'No. of Emergency Calls Attended' %></td>
+      <td><%= f.input :emer_duty, label: 'No. of Emergency Duties Performed'  %></td>
       
   </tr>
   <tr>
-    <td><%= f.input :mlc_perf, label: ' MLC Performed'  , input_html: { value: '0' } %></td>
-      <td><%= f.input :postmor_perf, label: ' Postmortem Done' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :court_presence, label: ' Days Present in Court' , input_html: { value: '0' }  %></td>
+    <td><%= f.input :mlc_perf, label: 'No. of MLC Performed'  %></td>
+      <td><%= f.input :postmor_perf, label: 'No. of Postmortem Done'  %></td>
+      <td><%= f.input :court_presence, label: 'No. of Days Present in Court for Medico Legal Cases'  %></td>
      
   </tr>
   <tr>
-     <td><%= f.input :op_major, label: ' Major Operations' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :op_minor, label: ' Minor Operations' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :op_caesarion, label: ' Caesarion Operations'  , input_html: { value: '0' } %></td>
+     <td><%= f.input :op_major, label: 'No. of Major Operations'  %></td>
+      <td><%= f.input :op_minor, label: 'No. of Minor Operations'  %></td>
+      <td><%= f.input :op_caesarion, label: 'No. of Caesarion Operations'  %></td>
       
   </tr>
   <tr>
-    <td><%= f.input :lab_tests, label: ' Lab Tests Conducted' , input_html: { value: '0' }  %></td>
-      <td><%= f.input :image_tests, label: ' Image Scans Conducted' , input_html: { value: '0' }  %></td>
+    <td><%= f.input :lab_tests, label: 'Tests Conducted : Lab Tests'  %></td>
+      <td><%= f.input :image_tests, label: 'Tests Conducted : Sonography/X-Ray/CT Scan/MRI/Dental X-Ray/X-Ray'  %></td>
       <td></td>
       
   </tr>
   <tr>
     <td><%= f.input :equip, label: 'Utilisation of Equipment By Self/Instruction', input_html: {style: 'height:80px;'} %></td>
-    <td><%= f.input :equipdetail, label: 'Information on Availaible Equipment' , input_html: {style: 'height:80px;'}%></td>
+    <td><%= f.input :equipdetail, label: 'Information on Available Equipment [Name And Number]' , input_html: {style: 'height:80px;'}%></td>
       <td><%= f.input :equipdefic, label: 'Equipment - Deficiency/Necessary Action' , input_html: {style: 'height:80px;'}%></td>
   </tr>
   </tbody>

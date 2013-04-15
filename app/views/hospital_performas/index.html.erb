@@ -5,7 +5,7 @@
 
 <p>
   Download:
-  <%= link_to "PDF", hospital_performas_path(format: "pdf") , :class => 'btn btn-small btn-success' %> |
+  
   <%= link_to "CSV", hospital_performas_path(format: "csv") , :class => 'btn btn-small btn-success' %> 
 </p>
 <br>
@@ -18,17 +18,17 @@
       <th>Minor Surgeries</th>
       <th>Major Surgeries</th>
       <th>Normal Delivery</th>
-      <th>Caesarion Delivery</th>
+      <th>Caesarian Delivery</th>
       <th><%= model_class.human_attribute_name(:pathology) %></th>
       <th>X-Ray / Digital X-Ray / Dental X-Ray</th>
       <th>Ultra Sound</th>
       <th>CT Scan / MRI</th>
       <th>ECG</th>
       <th>ECO / EMT</th>
-      <th>Blood Unit Transfused</th>
+      <th>Blood Units Transfused</th>
       <th>Hemo-Dialysis</th>
       <th>MLC</th>
-      <th>Post Mortem</th>
+      <th>Postmortem</th>
       <th><%= model_class.human_attribute_name(:remarks) %></th>
 
     </tr>
@@ -36,7 +36,7 @@
   <tbody>
     <% @hospital_performas.each do |hospital_performa| %>
       <tr>
-        <td><%= hospital_performa.hospital.hospital_name %></td>
+        <td><%= hospital_performa.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
         <td><%= hospital_performa.outdoor %></td>
         <td><%= hospital_performa.indoor %></td>
         <td><%= hospital_performa.minor_surgery %></td>

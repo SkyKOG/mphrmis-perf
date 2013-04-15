@@ -26,7 +26,7 @@
           <td><%= check_box_tag "empsancwork_employee_ids[]", empsancwork.employee_id %></td>
           <!-- <td><%= check_box_tag "empsancwork_employee_ids[]", empsancwork.employee_id %></td> -->
           <td><%= link_to t('.new', :default => t("helpers.links.new")),
-            new_performaone_url(:id => empsancwork.employee_id),
+            new_performaone_url(:id => empsancwork.employee_id, :hospital_id => empsancwork.hospital_id),
             :class => 'btn btn-mini btn-success',:id => 'addnew' %></td>
       </tr>
     <% end %>

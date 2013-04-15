@@ -1,6 +1,6 @@
 class PerformaonesController < InheritedResources::Base
 	def new
-  		@performaone = Performaone.new(:employee_id => params[:id])
+  		@performaone = Performaone.new(:employee_id => params[:id], :hospital_id => params[:hospital_id])
 	end
 
 	def create
@@ -15,12 +15,20 @@ class PerformaonesController < InheritedResources::Base
 		      end
     		end
 
-    		 def index
+    def index
 		@performaones = Performaone.order(:employee_id)
                 respond_to do |format|
                     format.html
                     format.csv { render text: @performaones.to_csv }
                 end
         end
-	end		
+	end	
+
+	def delete
+		  Performaone.find(params[:id]).destroy
+		  respond_to do |format|
+     		 format.html { redirect_to new_performaone_url(:id => empsancwork.employee_id, :hospital_id => empsancwork.hospital_id) }
+    	     format.json { head :no_content }
+  		  end
+	end	
 end
