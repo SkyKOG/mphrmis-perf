@@ -3,6 +3,8 @@
       <th>Name of Doctor</th>
       <th>Employee Treasury ID</th>
       <th>Hospital</th>
+      <th>Month</th>
+      <th>Year</th>
       <th>Post / Specialist</th>
       <th>Leaves Taken in the Month</th>
       <th>No. of Patients Checked In OPD in the Month</th>
@@ -21,14 +23,14 @@
       <th>Utilisation of Equipment By Self/Instruction</th>
       <th>Information on Available Equipment [Name And Number]</th>
       <th>Equipment - Deficiency / Necessary Action</th>
-      <th>Month</th>
-      <th>Year</th>
 	</tr>	
 	<% @performaones.each do |performaone|%>
 		<tr>
         <td><%= performaone.employee.emp_full_name %></td>
         <td><%= performaone.employee.emp_treasury_id %></td>
         <td><%= performaone.try(:hospital).try(:hospital_name) || "Not Entered" %></td>
+        <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
+        <td><%= performaone.try(:year)|| "Not Entered" %></td>
         <td><%= performaone.try(:designation).try(:Designation_English) || "Not Entered" %></td>
         <td><%= performaone.leave_taken %></td>
         <td><%= performaone.patients_opd %></td>
@@ -47,8 +49,6 @@
         <td><%= performaone.equip %></td>
         <td><%= performaone.equipdetail %></td>
         <td><%= performaone.equipdefic %></td>
-        <td><%= performaone.try(:month).try(:month_name) || "Not Entered" %></td>
-        <td><%= performaone.try(:year)|| "Not Entered" %></td>
 		</tr>
 	<% end %>
 </table>
