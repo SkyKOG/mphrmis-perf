@@ -24,4 +24,15 @@ class HospitalPerformasController < InheritedResources::Base
                     format.xls
                 end
         end
+
+      def destroy
+
+		  @lo=HospitalPerforma.find(params[:id])
+		  @lol=@lo
+		  @lo.destroy
+		  respond_to do |format|
+     		 format.html { redirect_to(new_hospital_performa_path(:id => @lol.hospital_id)) }
+    	     format.json { head :no_content }
+  		  end
+	end	
 end

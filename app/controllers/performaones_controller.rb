@@ -25,10 +25,13 @@ class PerformaonesController < InheritedResources::Base
         end
 	end	
 
-	def delete
-		  Performaone.find(params[:id]).destroy
+	def destroy
+
+		  @lo=Performaone.find(params[:id])
+		  @lol=@lo
+		  @lo.destroy
 		  respond_to do |format|
-     		 format.html { redirect_to new_performaone_url(:id => empsancwork.employee_id, :hospital_id => empsancwork.hospital_id) }
+     		 format.html { redirect_to(new_performaone_path(:hospital_id => @lol.hospital_id, :id => @lol.employee_id)) }
     	     format.json { head :no_content }
   		  end
 	end	
