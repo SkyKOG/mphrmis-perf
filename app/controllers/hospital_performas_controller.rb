@@ -17,11 +17,11 @@ class HospitalPerformasController < InheritedResources::Base
 	end	
 
 	 def index
-		@hospital_performas = HospitalPerforma.order(:hospital_id)
+		@hospital_performas = HospitalPerforma.find_all_by_hospital_id(params[:hospital_id])
                 respond_to do |format|
                     format.html
                     format.csv { render text: @hospital_performas.to_csv }
-                    format.xls
+                    format.xls {  }
                 end
         end
 

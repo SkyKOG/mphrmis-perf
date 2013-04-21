@@ -6,7 +6,7 @@
 <p>
   Download:
   
-  <%= link_to "XLS", hospital_performas_path(format: "xls") , :class => 'btn btn-small btn-success' %> 
+  <%= link_to "XLS", hospital_performas_path(format: "xls", :hospital_id => params[:hospital_id]) , :class => 'btn btn-small btn-success' %> 
 </p>
 <br>
 <table class="table table-bordered">

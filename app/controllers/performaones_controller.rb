@@ -16,14 +16,17 @@ class PerformaonesController < InheritedResources::Base
     		end
 
     def index
-		@performaones = Performaone.order(:employee_id)
-                respond_to do |format|
+		@performaones = Performaone.find_all_by_hospital_id(params[:hospital_id])
+
+		            respond_to do |format|
                     format.html
-                    format.csv { send_data @performaones.to_csv }
-                    format.xls # { send_data @performaones.to_csv(col_sep: '\t') }
+                    format.csv { render text: @performaones.to_csv }
+                    format.xls # { send_data @performaones.find_all_by_hospital_id(params[:hospital_id])to_csv(col_sep: '\t') }
                 end
         end
 	end	
+
+
 
 	def destroy
 

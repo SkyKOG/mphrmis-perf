@@ -63,7 +63,7 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              hospital_performas_path, :class => 'btn btn-success' , :id => 'submitco' %>
+              hospital_performas_path(:hospital_id=>@hospital_performa.hospital_id), :class => 'btn btn-success' , :id => 'submitco' %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_hospital_performa_path(@hospital_performa), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
